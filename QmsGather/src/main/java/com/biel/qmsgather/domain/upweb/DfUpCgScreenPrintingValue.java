@@ -64,6 +64,12 @@ public class DfUpCgScreenPrintingValue implements Serializable {
     @TableField(value = "stage")
     private String stage;
 
+    /**
+     * 过程编号
+     */
+    @TableField(value = "process")
+    private String process;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 

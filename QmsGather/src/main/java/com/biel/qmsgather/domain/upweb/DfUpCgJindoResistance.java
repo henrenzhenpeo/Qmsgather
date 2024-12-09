@@ -107,4 +107,11 @@ public class DfUpCgJindoResistance implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 数据上传人
+     */
+    @TableField(value = "upload_name")
+    private String uploadName;
+
 }

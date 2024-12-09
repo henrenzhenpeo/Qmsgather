@@ -19,6 +19,7 @@
             <result property="fdresistance2" column="fdresistance2" jdbcType="VARCHAR"/>
             <result property="bmbatch" column="BMbatch" jdbcType="VARCHAR"/>
             <result property="canNumber" column="can_number" jdbcType="VARCHAR"/>
+            <result property="uploadName" column="upload_name" jdbcType="VARCHAR"/>
             <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
     </resultMap>
 
@@ -26,7 +27,7 @@
         id,test_date,test_time,
         rank_times,factory,project,
         stage,linebody,sdresistance1,
-        sdresistance2,fdresistance1,fdresistance2,
+        sdresistance2,fdresistance1,fdresistance2,uploadName,
         BMbatch,can_number,batch_id
     </sql>
 </mapper>

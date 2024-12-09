@@ -30,10 +30,10 @@ public class DfUpCgScreenPrintingValueController {
         String newBatchId = dfUpCgScreenPrintingService.getMaxBatchId();
         System.out.println("newBatchId"+newBatchId);
         //插入批次号value表
-        dfUpCgScreenPrintingValue.setBatchId(newBatchId);
+        dfUpCgScreenPrintingValue.setBatchId(dfUpCgScreenPrintingValue.getProcess()+newBatchId);
         //插入批次号ScreenPrinting表
         for (DfUpCgScreenPrinting dfUpCgScreenPrinting : dfUpCgScreenPrintingValue.getDfUpCgScreenPrintingList()) {
-            dfUpCgScreenPrinting.setBatchId(newBatchId);
+            dfUpCgScreenPrinting.setBatchId(dfUpCgScreenPrintingValue.getProcess()+newBatchId);
         }
         if (dfUpCgScreenPrintingValue!=null) {
             boolean saveScreenPrinting = dfUpCgScreenPrintingService.saveBatch(dfUpCgScreenPrintingValue.getDfUpCgScreenPrintingList());

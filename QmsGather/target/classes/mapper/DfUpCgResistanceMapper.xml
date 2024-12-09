@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpCgResistanceMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.upweb.DfUpCgResistance">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="testDate" column="test_date" jdbcType="TIMESTAMP"/>
+            <result property="testTime" column="test_time" jdbcType="VARCHAR"/>
+            <result property="rankTimes" column="rank_times" jdbcType="VARCHAR"/>
+            <result property="factory" column="factory" jdbcType="VARCHAR"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="stage" column="stage" jdbcType="VARCHAR"/>
+            <result property="linebody" column="linebody" jdbcType="VARCHAR"/>
+            <result property="resistance1" column="resistance1" jdbcType="DOUBLE"/>
+            <result property="resistance2" column="resistance2" jdbcType="DOUBLE"/>
+            <result property="bmbatch" column="BMbatch" jdbcType="VARCHAR"/>
+            <result property="canNumber" column="can_number" jdbcType="VARCHAR"/>
+            <result property="uploadName" column="upload_name" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,test_date,test_time,
+        rank_times,factory,project,
+        stage,linebody,resistance1,
+        resistance2,BMbatch,can_number,
+        upload_name,batch_id
+    </sql>
+</mapper>

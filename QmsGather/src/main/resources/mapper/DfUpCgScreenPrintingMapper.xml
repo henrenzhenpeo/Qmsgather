@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpCgScreenPrintingMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.upweb.DfUpCgScreenPrinting">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="instrumentId" column="instrument_id" jdbcType="INTEGER"/>
+            <result property="testItems" column="test_items" jdbcType="VARCHAR"/>
+            <result property="judge" column="judge" jdbcType="VARCHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="process" column="process" jdbcType="VARCHAR"/>
+            <result property="testTime" column="test_time" jdbcType="TIMESTAMP"/>
+            <result property="uploadName" column="upload_name" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,instrument_id,test_items,
+        judge,remark,process,
+        test_time,upload_name,batch_id
+    </sql>
+</mapper>

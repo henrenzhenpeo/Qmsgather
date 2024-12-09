@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpCgScreenPrintingValueMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.upweb.DfUpCgScreenPrintingValue">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+            <result property="maxValue" column="max_value" jdbcType="DOUBLE"/>
+            <result property="minValue" column="min_value" jdbcType="DOUBLE"/>
+            <result property="aveValue" column="ave_value" jdbcType="DOUBLE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,batch_id,max_value,
+        min_value,ave_value
+    </sql>
+</mapper>

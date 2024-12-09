@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpCgJindoResistanceMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.upweb.DfUpCgJindoResistance">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="testDate" column="test_date" jdbcType="VARCHAR"/>
+            <result property="testTime" column="test_time" jdbcType="VARCHAR"/>
+            <result property="rankTimes" column="rank_times" jdbcType="VARCHAR"/>
+            <result property="factory" column="factory" jdbcType="VARCHAR"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="stage" column="stage" jdbcType="VARCHAR"/>
+            <result property="linebody" column="linebody" jdbcType="VARCHAR"/>
+            <result property="sdresistance1" column="sdresistance1" jdbcType="VARCHAR"/>
+            <result property="sdresistance2" column="sdresistance2" jdbcType="VARCHAR"/>
+            <result property="fdresistance1" column="fdresistance1" jdbcType="VARCHAR"/>
+            <result property="fdresistance2" column="fdresistance2" jdbcType="VARCHAR"/>
+            <result property="bmbatch" column="BMbatch" jdbcType="VARCHAR"/>
+            <result property="canNumber" column="can_number" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,test_date,test_time,
+        rank_times,factory,project,
+        stage,linebody,sdresistance1,
+        sdresistance2,fdresistance1,fdresistance2,
+        BMbatch,can_number,batch_id
+    </sql>
+</mapper>

@@ -70,6 +70,24 @@ public class DfUpCgScreenPrintingValue implements Serializable {
     @TableField(value = "process")
     private String process;
 
+    /**
+     * 仪器编号
+     */
+    @TableField(value = "instrument_id")
+    private Integer instrumentId;
+
+    /**
+     * 检测项目
+     */
+    @TableField(value = "test_items")
+    private String testItems;
+
+    /**
+     * 测试时间
+     */
+    @TableField(value = "test_time")
+    private String testTime;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 

@@ -36,7 +36,7 @@ public class DfUpCgScreenPrintingValueController {
             dfUpCgScreenPrinting.setBatchId(dfUpCgScreenPrintingValue.getProcess()+newBatchId);
         }
         if (dfUpCgScreenPrintingValue!=null) {
-            boolean saveScreenPrinting = dfUpCgScreenPrintingService.saveBatch(dfUpCgScreenPrintingValue.getDfUpCgScreenPrintingList());
+                boolean saveScreenPrinting = dfUpCgScreenPrintingService.saveBatch(dfUpCgScreenPrintingValue.getDfUpCgScreenPrintingList());
             if (saveScreenPrinting) {
                 boolean saveScreenPrintingValue = dfUpCgScreenPrintingValueService.save(dfUpCgScreenPrintingValue);
                 if (saveScreenPrintingValue) {

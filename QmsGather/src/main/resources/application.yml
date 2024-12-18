@@ -14,7 +14,7 @@ spring:
     #    password: heshan8386
     password: root
 server:
-  port: 1234
+  port: 1345
 swagger:
   enabled: true
 gateway:

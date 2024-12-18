@@ -28,6 +28,12 @@ public class DfUpCgScreenPrinting implements Serializable {
     private Integer instrumentId;
 
     /**
+     * 测量值
+     */
+    @TableField(value = "test_value")
+    private Double testValue;
+
+    /**
      * 检测项目
      */
     @TableField(value = "test_items")

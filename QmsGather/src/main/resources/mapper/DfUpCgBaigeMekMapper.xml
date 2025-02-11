@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfUpCgBaigeMekMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.upweb.DfUpCgBaigeMek">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="process" column="process" jdbcType="VARCHAR"/>
+            <result property="factory" column="factory" jdbcType="VARCHAR"/>
+            <result property="stage" column="stage" jdbcType="VARCHAR"/>
+            <result property="testDate" column="test_date" jdbcType="VARCHAR"/>
+            <result property="stoveTime" column="stove_time" jdbcType="VARCHAR"/>
+            <result property="project" column="project" jdbcType="VARCHAR"/>
+            <result property="stoveType" column="stove_type" jdbcType="VARCHAR"/>
+            <result property="batchCode" column="batch_code" jdbcType="VARCHAR"/>
+            <result property="testTime" column="test_time" jdbcType="VARCHAR"/>
+            <result property="testTimeEnd" column="test_time_end" jdbcType="VARCHAR"/>
+            <result property="testNumber" column="test_number" jdbcType="VARCHAR"/>
+            <result property="testResult" column="test_result" jdbcType="VARCHAR"/>
+            <result property="uploadName" column="upload_name" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,process,factory,
+        stage,test_date,stove_time,
+        project,stove_type,batch_code,
+        test_time,test_time_end,test_number,
+        test_result,upload_name,batch_id
+    </sql>
+</mapper>

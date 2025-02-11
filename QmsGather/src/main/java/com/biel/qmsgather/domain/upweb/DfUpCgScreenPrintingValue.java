@@ -74,7 +74,7 @@ public class DfUpCgScreenPrintingValue implements Serializable {
      * 仪器编号
      */
     @TableField(value = "instrument_id")
-    private Integer instrumentId;
+    private String instrumentId;
 
     /**
      * 检测项目
@@ -87,6 +87,12 @@ public class DfUpCgScreenPrintingValue implements Serializable {
      */
     @TableField(value = "test_time")
     private String testTime;
+
+    /**
+     * 数据上传人
+     */
+    @TableField(value = "upload_name")
+    private String uploadName;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

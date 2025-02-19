@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfExcelC98bUltrasonicContactAngleMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfExcelC98bUltrasonicContactAngle">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="measurementTime" column="measurement_time" jdbcType="TIMESTAMP"/>
+            <result property="grooveEdge" column="groove_edge" jdbcType="DECIMAL"/>
+            <result property="grooveRightAngle" column="groove_right_angle" jdbcType="DECIMAL"/>
+            <result property="upperLength" column="upper_length" jdbcType="DECIMAL"/>
+            <result property="nonGrooveRightAngle" column="non_groove_right_angle" jdbcType="DECIMAL"/>
+            <result property="nonGrooveEdge" column="non_groove_edge" jdbcType="DECIMAL"/>
+            <result property="nonGrooveLeftAngle" column="non_groove_left_angle" jdbcType="DECIMAL"/>
+            <result property="lowerLength" column="lower_length" jdbcType="DECIMAL"/>
+            <result property="grooveLeftAngle" column="groove_left_angle" jdbcType="DECIMAL"/>
+            <result property="machineNumber" column="machine_number" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,measurement_time,groove_edge,
+        groove_right_angle,upper_length,non_groove_right_angle,
+        non_groove_edge,non_groove_left_angle,lower_length,
+        groove_left_angle,machine_number,status
+    </sql>
+</mapper>

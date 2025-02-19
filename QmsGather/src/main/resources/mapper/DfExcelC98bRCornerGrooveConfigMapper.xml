@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfExcelC98bRCornerGrooveConfigMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfExcelC98bRCornerGrooveConfig">
+            <result property="standardType" column="standard_type" jdbcType="TIMESTAMP"/>
+            <result property="r8" column="r8" jdbcType="DECIMAL"/>
+            <result property="r1" column="r1" jdbcType="DECIMAL"/>
+            <result property="r2" column="r2" jdbcType="DECIMAL"/>
+            <result property="r3" column="r3" jdbcType="DECIMAL"/>
+            <result property="r4" column="r4" jdbcType="DECIMAL"/>
+            <result property="rightOutside" column="right_outside" jdbcType="DECIMAL"/>
+            <result property="rightInside" column="right_inside" jdbcType="DECIMAL"/>
+            <result property="leftInside" column="left_inside" jdbcType="DECIMAL"/>
+            <result property="leftOutside" column="left_outside" jdbcType="DECIMAL"/>
+            <result property="groove1" column="groove1" jdbcType="DECIMAL"/>
+            <result property="groove2" column="groove2" jdbcType="DECIMAL"/>
+            <result property="groove3" column="groove3" jdbcType="DECIMAL"/>
+            <result property="groove4" column="groove4" jdbcType="DECIMAL"/>
+            <result property="groove5" column="groove5" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        standard_type,r8,r1,
+        r2,r3,r4,
+        right_outside,right_inside,left_inside,
+        left_outside,groove1,groove2,
+        groove3,groove4,groove5
+    </sql>
+</mapper>

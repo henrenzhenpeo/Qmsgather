@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfExcelC98bInkBm3andwireandoilMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfExcelC98bInkBm3andwireandoil">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="recordTime" column="record_time" jdbcType="VARCHAR"/>
+            <result property="j2p" column="j2p" jdbcType="VARCHAR"/>
+            <result property="j5p" column="j5p" jdbcType="VARCHAR"/>
+            <result property="j8p" column="j8p" jdbcType="VARCHAR"/>
+            <result property="j19p" column="j19p" jdbcType="VARCHAR"/>
+            <result property="j21p" column="j21p" jdbcType="VARCHAR"/>
+            <result property="j17p" column="j17p" jdbcType="VARCHAR"/>
+            <result property="j3" column="j3" jdbcType="VARCHAR"/>
+            <result property="j8" column="j8" jdbcType="VARCHAR"/>
+            <result property="j13" column="j13" jdbcType="VARCHAR"/>
+            <result property="j17" column="j17" jdbcType="VARCHAR"/>
+            <result property="average" column="average" jdbcType="VARCHAR"/>
+            <result property="testResult" column="test_result" jdbcType="VARCHAR"/>
+            <result property="machineNumber" column="machine_number" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="noted" column="noted" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,record_time,j2p,
+        j5p,j8p,j19p,
+        j21p,j17p,j3,
+        j8,j13,j17,
+        average,test_result,machine_number,
+        status,noted
+    </sql>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfExcelC98bQrCodePositionHoleLeft8xZNewestConfigMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfExcelC98bQrCodePositionHoleLeft8xZNewestConfig">
+            <result property="recordTime" column="record_time" jdbcType="TIMESTAMP"/>
+            <result property="twoDCodeHeight" column="two_d_code_height" jdbcType="DECIMAL"/>
+            <result property="twoDCodeWidth" column="two_d_code_width" jdbcType="DECIMAL"/>
+            <result property="twoDCodeCenterToC" column="two_d_code_center_to_c" jdbcType="DECIMAL"/>
+            <result property="twoDCodeCenterToGlassY" column="two_d_code_center_to_glass_y" jdbcType="DECIMAL"/>
+            <result property="twoDCodeCenterToBm1" column="two_d_code_center_to_bm1" jdbcType="DECIMAL"/>
+            <result property="appleLogoHeight" column="apple_logo_height" jdbcType="DECIMAL"/>
+            <result property="appleLogoWidth" column="apple_logo_width" jdbcType="DECIMAL"/>
+            <result property="appleCenterToGlassY" column="apple_center_to_glass_y" jdbcType="DECIMAL"/>
+            <result property="leafWidth" column="leaf_width" jdbcType="DECIMAL"/>
+            <result property="leafBottomToAppleLogoBottom" column="leaf_bottom_to_apple_logo_bottom" jdbcType="DECIMAL"/>
+            <result property="leafTopToAppleLogoBottom" column="leaf_top_to_apple_logo_bottom" jdbcType="DECIMAL"/>
+            <result property="twoDCodeCenterToOil" column="two_d_code_center_to_oil" jdbcType="DECIMAL"/>
+            <result property="leafTopToC" column="leaf_top_to_c" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        record_time,two_d_code_height,two_d_code_width,
+        two_d_code_center_to_c,two_d_code_center_to_glass_y,two_d_code_center_to_bm1,
+        apple_logo_height,apple_logo_width,apple_center_to_glass_y,
+        leaf_width,leaf_bottom_to_apple_logo_bottom,leaf_top_to_apple_logo_bottom,
+        two_d_code_center_to_oil,leaf_top_to_c
+    </sql>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfExcelC98bInkBm0Mapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfExcelC98bInkBm0">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="measurementTime" column="measurement_time" jdbcType="VARCHAR"/>
+            <result property="sd1" column="sd1" jdbcType="FLOAT"/>
+            <result property="sd3" column="sd3" jdbcType="FLOAT"/>
+            <result property="sd5" column="sd5" jdbcType="FLOAT"/>
+            <result property="sd7" column="sd7" jdbcType="FLOAT"/>
+            <result property="fd1" column="fd1" jdbcType="FLOAT"/>
+            <result property="fd3" column="fd3" jdbcType="FLOAT"/>
+            <result property="average" column="average" jdbcType="FLOAT"/>
+            <result property="testResult" column="test_result" jdbcType="VARCHAR"/>
+            <result property="machineNumber" column="machine_number" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="noted" column="noted" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,measurement_time,sd1,
+        sd3,sd5,sd7,
+        fd1,fd3,average,
+        test_result,machine_number,status,
+        noted
+    </sql>
+</mapper>

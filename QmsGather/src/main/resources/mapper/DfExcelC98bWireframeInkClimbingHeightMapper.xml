@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfExcelC98bWireframeInkClimbingHeightMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfExcelC98bWireframeInkClimbingHeight">
+            <result property="recordTime" column="record_time" jdbcType="TIMESTAMP"/>
+            <result property="upperLongSideInkToGlassFrontHeight" column="upper_long_side_ink_to_glass_front_height" jdbcType="DECIMAL"/>
+            <result property="lowerLongSideInkToGlassFrontHeight" column="lower_long_side_ink_to_glass_front_height" jdbcType="DECIMAL"/>
+            <result property="nonGrooveShortSideInkToGlassFrontHeight" column="non_groove_short_side_ink_to_glass_front_height" jdbcType="DECIMAL"/>
+            <result property="grooveShortSideInkToGlassFrontHeight" column="groove_short_side_ink_to_glass_front_height" jdbcType="DECIMAL"/>
+            <result property="grooveInkToGlassBackHeight" column="groove_ink_to_glass_back_height" jdbcType="DECIMAL"/>
+            <result property="machineNumber" column="machine_number" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        record_time,upper_long_side_ink_to_glass_front_height,lower_long_side_ink_to_glass_front_height,
+        non_groove_short_side_ink_to_glass_front_height,groove_short_side_ink_to_glass_front_height,groove_ink_to_glass_back_height,
+        machine_number,status
+    </sql>
+</mapper>

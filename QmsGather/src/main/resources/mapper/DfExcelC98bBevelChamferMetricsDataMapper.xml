@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfExcelC98bBevelChamferMetricsDataMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfExcelC98bBevelChamferMetricsData">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="timepoint" column="timepoint" jdbcType="VARCHAR"/>
+            <result property="leftLongEdgeBevel" column="left_long_edge_bevel" jdbcType="DECIMAL"/>
+            <result property="leftLongEdgeBevel1" column="left_long_edge_bevel1" jdbcType="DECIMAL"/>
+            <result property="lowerShortEdgeBevel" column="lower_short_edge_bevel" jdbcType="DECIMAL"/>
+            <result property="lowerShortEdgeBevel1" column="lower_short_edge_bevel1" jdbcType="DECIMAL"/>
+            <result property="rightLongEdgeBevel" column="right_long_edge_bevel" jdbcType="DECIMAL"/>
+            <result property="rightLongEdgeBevel1" column="right_long_edge_bevel1" jdbcType="DECIMAL"/>
+            <result property="upperShortEdgeBevel" column="upper_short_edge_bevel" jdbcType="DECIMAL"/>
+            <result property="upperShortEdgeBevel1" column="upper_short_edge_bevel1" jdbcType="DECIMAL"/>
+            <result property="grooveFaceChamfer" column="groove_face_chamfer" jdbcType="DECIMAL"/>
+            <result property="longEdgeBaseChamfer" column="long_edge_base_chamfer" jdbcType="DECIMAL"/>
+            <result property="shortEdgeBaseChamfer" column="short_edge_base_chamfer" jdbcType="DECIMAL"/>
+            <result property="grooveBaseChamfer" column="groove_base_chamfer" jdbcType="DECIMAL"/>
+            <result property="opportunityBow" column="opportunity_bow" jdbcType="VARCHAR"/>
+            <result property="periodMachine" column="period_machine" jdbcType="VARCHAR"/>
+            <result property="totalValue" column="total_value" jdbcType="DECIMAL"/>
+            <result property="bevelEdge" column="bevel_edge" jdbcType="DECIMAL"/>
+            <result property="chamfer" column="chamfer" jdbcType="DECIMAL"/>
+            <result property="count" column="count" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,timepoint,left_long_edge_bevel,
+        left_long_edge_bevel1,lower_short_edge_bevel,lower_short_edge_bevel1,
+        right_long_edge_bevel,right_long_edge_bevel1,upper_short_edge_bevel,
+        upper_short_edge_bevel1,groove_face_chamfer,long_edge_base_chamfer,
+        short_edge_base_chamfer,groove_base_chamfer,opportunity_bow,
+        period_machine,total_value,bevel_edge,
+        chamfer,count
+    </sql>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfExcelC98bInkBm2Mapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfExcelC98bInkBm2">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="time" column="Time" jdbcType="VARCHAR"/>
+            <result property="j3" column="j3" jdbcType="DECIMAL"/>
+            <result property="j8" column="j8" jdbcType="DECIMAL"/>
+            <result property="j13" column="j13" jdbcType="DECIMAL"/>
+            <result property="j17" column="j17" jdbcType="DECIMAL"/>
+            <result property="average" column="AVERAGE" jdbcType="DECIMAL"/>
+            <result property="testResult" column="Test_result" jdbcType="VARCHAR"/>
+            <result property="machineNumber" column="Machine_number" jdbcType="VARCHAR"/>
+            <result property="status" column="Status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,Time,j3,
+        j8,j13,j17,
+        AVERAGE,Test_result,Machine_number,
+        Status
+    </sql>
+</mapper>

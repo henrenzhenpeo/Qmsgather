@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biel.qmsgather.mapper.DfExcelProcesscontrolconfigMapper">
+
+    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfExcelProcesscontrolconfig">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="punctuationsize" column="punctuationsize" jdbcType="VARCHAR"/>
+            <result property="outerlengthupper" column="outerlengthupper" jdbcType="DECIMAL"/>
+            <result property="outerlengthlower" column="outerlengthlower" jdbcType="DECIMAL"/>
+            <result property="outerwidthupper" column="outerwidthupper" jdbcType="DECIMAL"/>
+            <result property="outerwidthlower" column="outerwidthlower" jdbcType="DECIMAL"/>
+            <result property="inlayheight" column="inlayheight" jdbcType="DECIMAL"/>
+            <result property="inlaywidth" column="inlaywidth" jdbcType="DECIMAL"/>
+            <result property="inlaybottomtoglassbottom" column="inlaybottomtoglassbottom" jdbcType="DECIMAL"/>
+            <result property="inlaytoglasscenter" column="inlaytoglasscenter" jdbcType="DECIMAL"/>
+            <result property="inlaytoptoglasstop" column="inlaytoptoglasstop" jdbcType="DECIMAL"/>
+            <result property="inlaybottomtoglassbottomdistance" column="inlaybottomtoglassbottomdistance" jdbcType="DECIMAL"/>
+            <result property="machinenumber" column="machinenumber" jdbcType="VARCHAR"/>
+            <result property="notes" column="notes" jdbcType="VARCHAR"/>
+            <result property="workstation" column="workstation" jdbcType="VARCHAR"/>
+            <result property="lasercodebottomtoglassbottomMax" column="lasercodebottomtoglassbottom_max" jdbcType="DECIMAL"/>
+            <result property="lasercodebottomtoglassbottomMin" column="lasercodebottomtoglassbottom_min" jdbcType="DECIMAL"/>
+            <result property="lasercodebottomtoglassbottomAvg" column="lasercodebottomtoglassbottom_avg" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,punctuationsize,outerlengthupper,
+        outerlengthlower,outerwidthupper,outerwidthlower,
+        inlayheight,inlaywidth,inlaybottomtoglassbottom,
+        inlaytoglasscenter,inlaytoptoglasstop,inlaybottomtoglassbottomdistance,
+        machinenumber,notes,workstation,
+        lasercodebottomtoglassbottom_max,lasercodebottomtoglassbottom_min,lasercodebottomtoglassbottom_avg
+    </sql>
+</mapper>

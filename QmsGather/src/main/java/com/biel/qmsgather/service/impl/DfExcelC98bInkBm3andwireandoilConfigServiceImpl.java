@@ -35,7 +35,7 @@ public class DfExcelC98bInkBm3andwireandoilConfigServiceImpl extends ServiceImpl
 
 
     @Transactional(rollbackFor = Exception.class)
-    public int importConfigFromExcel(MultipartFile file) {
+    public int importConfigFromExcel(MultipartFile file, String batchId) {
         log.info("开始读取Excel配置文件...");
         List<DfExcelC98bInkBm3andwireandoilConfig> configList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
@@ -61,6 +61,9 @@ public class DfExcelC98bInkBm3andwireandoilConfigServiceImpl extends ServiceImpl
                 }
 
                 DfExcelC98bInkBm3andwireandoilConfig config = new DfExcelC98bInkBm3andwireandoilConfig();
+
+                config.setBatchId(batchId);
+
 
                 try {
                     // 获取前11列的数据

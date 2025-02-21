@@ -36,7 +36,7 @@ public class DfExcelC98bQrCodePositionHoleLeft8xZNewestFixedServiceImpl extends 
     private DfExcelC98bQrCodePositionHoleLeft8xZNewestFixedMapper mapper;
 
     @Transactional(rollbackFor = Exception.class)
-    public int importExcelData(MultipartFile file) {
+    public int importExcelData(MultipartFile file,String batchId) {
         List<DfExcelC98bQrCodePositionHoleLeft8xZNewestFixed> dataList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.009);
 
@@ -56,6 +56,8 @@ public class DfExcelC98bQrCodePositionHoleLeft8xZNewestFixedServiceImpl extends 
                     try {
                         DfExcelC98bQrCodePositionHoleLeft8xZNewestFixed data = new DfExcelC98bQrCodePositionHoleLeft8xZNewestFixed();
 
+
+                        data.setBatchId(batchId);
                         // 设置各个字段的值
                         data.setRecordTime(getCellValueAsString(row.getCell(0)));
                         data.setTwoDCodeHeight(getCellValueAsBigDecimal(row.getCell(1)));

@@ -12,26 +12,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/bevel-data")
 @Slf4j
-public class C98bBevelDataController {
+public class DfExcelC98bBevelDataController {
 
     @Autowired
     private DfExcelC98bBevelChamferMetricsDataService c98bBevelDataService;
 
-
-
     @Autowired
-    private DfExcelC98bBevelChamferMetricsConfigService dfExcelC98bBevelChamferMetricsConfigService;
-
-
-
-
-
+    private DfExcelC98bBevelChamferMetricsConfigService configService;
 
     @PostMapping("/import")
     public ResponseEntity<Map<String, Object>> importExcelData(@RequestParam("file") MultipartFile file) {
@@ -50,10 +45,25 @@ public class C98bBevelDataController {
             return ResponseEntity.badRequest().body(response);
         }
 
-        try {
-            Map<String, Object> result = c98bBevelDataService.importExcelData(file);
+        // 检查文件名前缀
+        String expectedPrefix = "C98B 精雕斜边+倒角- 9836-0.5 11-4";
+        if (!fileName.startsWith(expectedPrefix)) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", false);
+            response.put("message", "文件名格式错误，应以 '" + expectedPrefix + "' 开头");
+            return ResponseEntity.badRequest().body(response);
+        }
 
-            int ds = dfExcelC98bBevelChamferMetricsConfigService.importConfigFromExcel(file);
+        try {
+            // 生成批次号
+            String batchId = generateBatchId(fileName);
+
+            // 导入数据和配置
+            Map<String, Object> result = c98bBevelDataService.importExcelData(file, batchId);
+            int configCount = configService.importConfigFromExcel(file, batchId);
+
+            // 合并结果
+            result.put("configCount", configCount);
 
             return ResponseEntity.ok(result);
         } catch (Exception e) {
@@ -63,5 +73,17 @@ public class C98bBevelDataController {
             response.put("message", "导入失败：" + e.getMessage());
             return ResponseEntity.internalServerError().body(response);
         }
+    }
+
+    private String generateBatchId(String fileName) {
+        // 获取当前时间
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String timestamp = sdf.format(new Date());
+
+        // 处理文件名(移除.xlsx后缀)
+        String baseFileName = fileName.toLowerCase().replace(".xlsx", "");
+
+        // 生成批次号格式: 文件名_时间戳
+        return baseFileName + "_" + timestamp;
     }
 }

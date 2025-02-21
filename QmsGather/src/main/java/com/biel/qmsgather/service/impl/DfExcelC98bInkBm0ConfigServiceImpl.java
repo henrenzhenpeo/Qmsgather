@@ -33,7 +33,7 @@ public class DfExcelC98bInkBm0ConfigServiceImpl extends ServiceImpl<DfExcelC98bI
 
 
     @Transactional(rollbackFor = Exception.class)
-    public int importConfigFromExcel(MultipartFile file) {
+    public int importConfigFromExcel(MultipartFile file, String batchId) {
         List<DfExcelC98bInkBm0Config> configList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
 
@@ -62,6 +62,8 @@ public class DfExcelC98bInkBm0ConfigServiceImpl extends ServiceImpl<DfExcelC98bI
                         values[j] = getMergedCellValue(sheet, i, j, cell, evaluator, formatter);
                     }
 
+
+                    config.setBatchId(batchId);
                     // 设置实体属性
                     config.setCol1(values[0]);
                     config.setCol2(values[1]);

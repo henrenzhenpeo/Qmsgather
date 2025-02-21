@@ -106,6 +106,9 @@ public class DfExcelProcesscontrolconfig implements Serializable {
      */
     private BigDecimal lasercodebottomtoglassbottomAvg;
 
+
+    private String BatchId;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

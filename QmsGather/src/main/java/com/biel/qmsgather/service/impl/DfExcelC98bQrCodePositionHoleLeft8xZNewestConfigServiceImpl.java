@@ -37,9 +37,9 @@ public class DfExcelC98bQrCodePositionHoleLeft8xZNewestConfigServiceImpl extends
 
 
 
-    @Override
+
     @Transactional(rollbackFor = Exception.class)
-    public int importConfigFromExcel(MultipartFile file) {
+    public int importConfigFromExcel(MultipartFile file,String batchId) {
         List<DfExcelC98bQrCodePositionHoleLeft8xZNewestConfig> configList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
 
@@ -76,6 +76,8 @@ public class DfExcelC98bQrCodePositionHoleLeft8xZNewestConfigServiceImpl extends
                 try {
                     DfExcelC98bQrCodePositionHoleLeft8xZNewestConfig config = new DfExcelC98bQrCodePositionHoleLeft8xZNewestConfig();
 
+
+                    config.setBatchId(batchId);
                     // 设置各个字段的值
                     config.setRecordTime(getStringValue(row.getCell(0)));
                     config.setTwoDCodeHeight(getBigDecimalValue(row.getCell(1)));

@@ -39,7 +39,7 @@ public class DfExcelC98bInkBm3andoilServiceImpl extends ServiceImpl<DfExcelC98bI
 
 
     @Transactional(rollbackFor = Exception.class)
-    public Map<String, Object> importExcelData(MultipartFile file) {
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId) {
         Map<String, Object> result = new HashMap<>();
         List<DfExcelC98bInkBm3andoil> dataList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
@@ -77,6 +77,8 @@ public class DfExcelC98bInkBm3andoilServiceImpl extends ServiceImpl<DfExcelC98bI
                 try {
                     DfExcelC98bInkBm3andoil data = new DfExcelC98bInkBm3andoil();
 
+
+                    data.setBatchId(batchId);
                     // 设置数据字段
                     data.setTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
                     data.setJ2p(getMergedCellValue(sheet, i, 1, row.getCell(1), evaluator, formatter));

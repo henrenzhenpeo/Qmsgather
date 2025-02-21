@@ -34,9 +34,9 @@ public class DfExcelC98bRCornerGrooveServiceImpl extends ServiceImpl<DfExcelC98b
     @Autowired
     private DfExcelC98bRCornerGrooveMapper mapper;
 
-    @Override
+
     @Transactional(rollbackFor = Exception.class)
-    public int importExcelData(MultipartFile file) {
+    public int importExcelData(MultipartFile file,String batchId) {
 
         ZipSecureFile.setMinInflateRatio(0.001);
         List<DfExcelC98bRCornerGroove> dataList = new ArrayList<>();
@@ -58,7 +58,7 @@ public class DfExcelC98bRCornerGrooveServiceImpl extends ServiceImpl<DfExcelC98b
                 }
 
                 try {
-                    DfExcelC98bRCornerGroove data = readRowData(row);
+                    DfExcelC98bRCornerGroove data = readRowData(row, batchId);
                     dataList.add(data);
                     log.debug("成功读取第{}行数据", i + 1);
                 } catch (Exception e) {
@@ -101,8 +101,11 @@ public class DfExcelC98bRCornerGrooveServiceImpl extends ServiceImpl<DfExcelC98b
         return true;
     }
 
-    private DfExcelC98bRCornerGroove readRowData(Row row) {
+    private DfExcelC98bRCornerGroove readRowData(Row row, String batchId) {
         DfExcelC98bRCornerGroove data = new DfExcelC98bRCornerGroove();
+
+
+        data.setBatchId(batchId);
 
         // 读取时间
         data.setRecordTime(getCellValueAsString(row.getCell(0)));

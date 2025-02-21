@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface DfExcelC98bInkBm1ConfigService extends IService<DfExcelC98bInkBm1Config> {
 
 
-    public int importConfigFromExcel(MultipartFile file);
+    public int importConfigFromExcel(MultipartFile file, String batchId);
 
 
 

@@ -1,76 +1,87 @@
 package com.biel.qmsgather.controller;
 
-import com.biel.qmsgather.service.DfExcelC98bLayer2Program20240624ManualConfigService;
-import com.biel.qmsgather.service.DfExcelC98bRCornerGrooveService;
-import com.biel.qmsgather.service.DfExcelC98bWireframe20240624ManualService;
+import com.biel.qmsgather.service.*;
+import com.biel.qmsgather.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @autor 96901
- * @date 2025/2/13
- */
-
 @Slf4j
 @RestController
-@RequestMapping("/api/corner-grooves")
+@RequestMapping("/api/wire-frame")
 public class DfExcelC98bWireframe20240624ManualController {
 
+    @Autowired
+    private DfExcelC98bWireframe20240624ManualService dfExcelC98bWireframe20240624ManualService;
 
     @Autowired
-    private DfExcelC98bWireframe20240624ManualService cornerGrooveService;
-
-
-    @Autowired
-    private DfExcelC98bLayer2Program20240624ManualConfigService layer2Program20240624ManualConfigService;
-
-
-
+    private DfExcelC98bWireframe20240624ManualConfigService dfExcelC98bWireframe20240624ManualConfigService;
 
     @PostMapping("/import")
-    public ResponseEntity<Map<String, Object>> importExcel(@RequestParam("file") MultipartFile file) {
-        Map<String, Object> response = new HashMap<>();
-
+    public Result<Map<String, Object>> importExcel(@RequestParam("file") MultipartFile file) {
         try {
+            // 检查文件是否为空
             if (file.isEmpty()) {
-                response.put("success", false);
-                response.put("message", "请选择要上传的文件");
-                return ResponseEntity.badRequest().body(response);
+                return new Result<>(500, "请选择要上传的文件");
             }
 
+            // 检查文件格式
             String fileName = file.getOriginalFilename();
             if (fileName == null || (!fileName.endsWith(".xlsx") && !fileName.endsWith(".xls"))) {
-                response.put("success", false);
-                response.put("message", "请上传Excel文件");
-                return ResponseEntity.badRequest().body(response);
+                return new Result<>(500, "请上传Excel文件(.xlsx或.xls格式)");
             }
 
-            int successCount = cornerGrooveService.importExcelData(file);
-            int ds = layer2Program20240624ManualConfigService.importConfigFromExcel(file);
+            // 检查文件名前缀
+            String expectedPrefix = "C98B线框20240624";
+            if (!fileName.startsWith(expectedPrefix)) {
+                return new Result<>(500, "文件名格式错误，应以 '" + expectedPrefix + "' 开头");
+            }
 
+            // 生成批次号
+            String batchId = generateBatchId(fileName);
 
+            // 导入数据和配置
+            int dataCount = dfExcelC98bWireframe20240624ManualService.importExcelData(file, batchId);
+            int configCount = dfExcelC98bWireframe20240624ManualConfigService.importConfigFromExcel(file, batchId);
 
-            response.put("success", true);
-            response.put("message", "文件导入成功");
-            response.put("data", successCount);
-            return ResponseEntity.ok(response);
+            // 封装返回结果
+            Map<String, Object> resultData = new HashMap<>();
+            resultData.put("dataCount", dataCount);
+            resultData.put("configCount", configCount);
+            resultData.put("batchId", batchId);
+
+            return new Result<>(200, "文件导入成功", resultData);
 
         } catch (Exception e) {
             log.error("文件导入失败", e);
-            response.put("success", false);
-            response.put("message", "文件导入失败：" + e.getMessage());
-            return ResponseEntity.internalServerError().body(response);
+            return new Result<>(500, "文件导入失败：" + e.getMessage());
         }
     }
 
+    /**
+     * 生成批次号
+     * 格式: 文件名前缀_时间戳
+     */
+    private String generateBatchId(String fileName) {
+        // 获取当前时间
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String timestamp = sdf.format(new Date());
 
+        // 处理文件名(移除扩展名)
+        String baseFileName = fileName.toLowerCase()
+                .replace(".xlsx", "")
+                .replace(".xls", "");
+
+        // 生成批次号
+        return baseFileName + "_" + timestamp;
+    }
 }

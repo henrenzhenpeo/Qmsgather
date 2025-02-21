@@ -33,9 +33,9 @@ public class DfExcelC98bWireframeInkClimbingHeightServiceImpl extends ServiceImp
     @Autowired
     private DfExcelC98bWireframeInkClimbingHeightMapper mapper;
 
-    @Override
+
     @Transactional(rollbackFor = Exception.class)
-    public int importFromExcel(MultipartFile file) {
+    public int importFromExcel(MultipartFile file, String batchId) {
         List<DfExcelC98bWireframeInkClimbingHeight> dataList = new ArrayList<>();
 
         try {
@@ -60,6 +60,7 @@ public class DfExcelC98bWireframeInkClimbingHeightServiceImpl extends ServiceImp
                         }
 
                         // 读取各项测量值
+                        data.setBatchId(batchId);
                         data.setUpperLongSideInkToGlassFrontHeight(getStringToBigDecimal(row.getCell(1)));
                         data.setLowerLongSideInkToGlassFrontHeight(getStringToBigDecimal(row.getCell(2)));
                         data.setNonGrooveShortSideInkToGlassFrontHeight(getStringToBigDecimal(row.getCell(3)));

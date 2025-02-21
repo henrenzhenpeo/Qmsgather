@@ -35,7 +35,7 @@ public class DfExcelC98bInkDepthConfigServiceImpl extends ServiceImpl<DfExcelC98
 
 
     @Transactional(rollbackFor = Exception.class)
-    public int importConfigFromExcel(MultipartFile file) {
+    public int importConfigFromExcel(MultipartFile file, String batchId) {
         log.info("开始读取Excel配置文件...");
         List<DfExcelC98bInkDepthConfig> configList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
@@ -61,6 +61,8 @@ public class DfExcelC98bInkDepthConfigServiceImpl extends ServiceImpl<DfExcelC98
                 }
 
                 DfExcelC98bInkDepthConfig config = new DfExcelC98bInkDepthConfig();
+
+                config.setBatchId(batchId);
 
                 // 读取前7列数据
                 for (int j = 0; j < 7; j++) {

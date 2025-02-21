@@ -34,7 +34,7 @@ public class DfExcelC98bInkBm3andwireandoilServiceImpl extends ServiceImpl<DfExc
 
 
     @Transactional(rollbackFor = Exception.class)
-    public int importExcelData(MultipartFile file) {
+    public int importExcelData(MultipartFile file, String batchId) {
         log.info("开始读取Excel文件...");
         List<DfExcelC98bInkBm3andwireandoil> dataList = new ArrayList<>();
         int successCount = 0;
@@ -70,6 +70,7 @@ public class DfExcelC98bInkBm3andwireandoilServiceImpl extends ServiceImpl<DfExc
 
                 try {
                     DfExcelC98bInkBm3andwireandoil data = new DfExcelC98bInkBm3andwireandoil();
+                    data.setBatchId(batchId);
 
                     // 设置数据字段
                     data.setRecordTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));

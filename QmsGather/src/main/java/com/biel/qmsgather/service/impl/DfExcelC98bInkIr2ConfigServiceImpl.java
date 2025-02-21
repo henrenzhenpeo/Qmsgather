@@ -33,7 +33,7 @@ public class DfExcelC98bInkIr2ConfigServiceImpl extends ServiceImpl<DfExcelC98bI
     private DfExcelC98bInkIr2ConfigMapper configMapper;
 
     @Transactional(rollbackFor = Exception.class)
-    public int importConfigFromExcel(MultipartFile file) {
+    public int importConfigFromExcel(MultipartFile file, String batchId) {
         List<DfExcelC98bInkIr2Config> configList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
 
@@ -58,6 +58,7 @@ public class DfExcelC98bInkIr2ConfigServiceImpl extends ServiceImpl<DfExcelC98bI
                 }
 
                 DfExcelC98bInkIr2Config config = new DfExcelC98bInkIr2Config();
+                config.setBatchId(batchId);
 
                 try {
                     // 读取前5列数据

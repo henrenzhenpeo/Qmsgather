@@ -1,143 +1,163 @@
 package com.biel.qmsgather.service.impl;
 
+
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.biel.qmsgather.domain.DfExcelC98bRCornerGroove;
 import com.biel.qmsgather.domain.DfExcelC98bWireframe20240624Manual;
-import com.biel.qmsgather.mapper.DfExcelC98bRCornerGrooveMapper;
+import com.biel.qmsgather.domain.DfExcelC98bWireframe20240624ManualConfig;
+import com.biel.qmsgather.mapper.DfExcelC98bWireframe20240624ManualConfigMapper;
 import com.biel.qmsgather.mapper.DfExcelC98bWireframe20240624ManualMapper;
 import com.biel.qmsgather.service.DfExcelC98bWireframe20240624ManualService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.openxml4j.util.ZipSecureFile;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.math.BigDecimal;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
 * @author 96901
 * @description 针对表【df_excel_c98b_wireframe_20240624_manual(C98B线框20240624（手动）相关数据)】的数据库操作Service实现
-* @createDate 2025-02-13 11:13:11
+* @createDate 2025-02-20 15:34:42
 */
-@Slf4j
 @Service
+@Slf4j
 public class DfExcelC98bWireframe20240624ManualServiceImpl extends ServiceImpl<DfExcelC98bWireframe20240624ManualMapper, DfExcelC98bWireframe20240624Manual>
-    implements DfExcelC98bWireframe20240624ManualService{
-
+    implements DfExcelC98bWireframe20240624ManualService {
 
 
     @Autowired
-    private DfExcelC98bRCornerGrooveMapper mapper;
+    private DfExcelC98bWireframe20240624ManualMapper mapper;
 
-    @Override
+
     @Transactional(rollbackFor = Exception.class)
-    public int importExcelData(MultipartFile file) {
-        List<DfExcelC98bRCornerGroove> dataList = new ArrayList<>();
+    public int importExcelData(MultipartFile file,String batchId) {
+        List<DfExcelC98bWireframe20240624Manual> dataList = new ArrayList<>();
+        ZipSecureFile.setMinInflateRatio(0.001);
         int successCount = 0;
+        int consecutiveNullCount = 0;
 
-        try {
-            log.info("开始读取Excel文件: {}", file.getOriginalFilename());
-            Workbook workbook = new XSSFWorkbook(file.getInputStream());
+        try (Workbook workbook = WorkbookFactory.create(file.getInputStream())) {
+            Sheet sheet = workbook.getSheet("线框");
 
-            Sheet sheet = workbook.getSheetAt(0);
-            log.info("成功打开工作表，总行数：{}", sheet.getLastRowNum());
+            if (sheet == null) {
+                log.error("未找到工作表: 线框");
+                throw new RuntimeException("未找到指定的工作表");
+            }
 
-            // 从第9行开始读取数据
-            for (int i = 8; i <= sheet.getLastRowNum(); i++) {
+            log.info("开始读取Excel文件：{}", file.getOriginalFilename());
+
+            FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
+            DataFormatter formatter = new DataFormatter();
+
+            // 从第10行开始读取数据(索引从0开始，所以是9)
+            for (int i = 9; ; i++) {
                 Row row = sheet.getRow(i);
-                if (isEmptyRow(row)) {
-                    log.debug("第{}行为空行，跳过", i + 1);
+
+                if (row == null || isFirstColumnEmpty(row)) {
+                    consecutiveNullCount++;
+                    if (consecutiveNullCount >= 3) {
+                        break;
+                    }
                     continue;
                 }
 
+                consecutiveNullCount = 0;
+
                 try {
-                    DfExcelC98bRCornerGroove data = readRowData(row);
-                    dataList.add(data);
-                    log.debug("第{}行数据读取成功", i + 1);
-                } catch (Exception e) {
-                    log.error("读取第{}行数据失败: {}", i + 1, e.getMessage());
-                }
-            }
+                    DfExcelC98bWireframe20240624Manual entity = new DfExcelC98bWireframe20240624Manual();
 
-            // 批量插入数据
-            if (!dataList.isEmpty()) {
-                log.info("开始插入数据到数据库，总记录数：{}", dataList.size());
-                for (DfExcelC98bRCornerGroove data : dataList) {
-                    try {
-                        mapper.insert(data);
+
+                    entity.setBatchId(batchId);
+                    // 设置所有字段值
+                    entity.setRecordTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
+                    entity.setY1(getMergedCellValue(sheet, i, 1, row.getCell(1), evaluator, formatter));
+                    entity.setY1XF(getMergedCellValue(sheet, i, 2, row.getCell(2), evaluator, formatter));
+                    entity.setY2(getMergedCellValue(sheet, i, 3, row.getCell(3), evaluator, formatter));
+                    entity.setXdz3(getMergedCellValue(sheet, i, 4, row.getCell(4), evaluator, formatter));
+                    entity.setXdz4(getMergedCellValue(sheet, i, 5, row.getCell(5), evaluator, formatter));
+                    entity.setY25y2(getMergedCellValue(sheet, i, 6, row.getCell(6), evaluator, formatter));
+                    entity.setY284(getMergedCellValue(sheet, i, 7, row.getCell(7), evaluator, formatter));
+                    entity.setY26y1(getMergedCellValue(sheet, i, 8, row.getCell(8), evaluator, formatter));
+                    entity.setX7(getMergedCellValue(sheet, i, 9, row.getCell(9), evaluator, formatter));
+                    entity.setX8(getMergedCellValue(sheet, i, 10, row.getCell(10), evaluator, formatter));
+                    entity.setR1(getMergedCellValue(sheet, i, 11, row.getCell(11), evaluator, formatter));
+                    entity.setR2(getMergedCellValue(sheet, i, 12, row.getCell(12), evaluator, formatter));
+                    entity.setR3(getMergedCellValue(sheet, i, 13, row.getCell(13), evaluator, formatter));
+                    entity.setR4(getMergedCellValue(sheet, i, 14, row.getCell(14), evaluator, formatter));
+                    entity.setShapeLength1(getMergedCellValue(sheet, i, 15, row.getCell(15), evaluator, formatter));
+                    entity.setShapeLength2(getMergedCellValue(sheet, i, 16, row.getCell(16), evaluator, formatter));
+                    entity.setOutlineWidth94(getMergedCellValue(sheet, i, 17, row.getCell(17), evaluator, formatter));
+                    entity.setOutlineWidth95(getMergedCellValue(sheet, i, 18, row.getCell(18), evaluator, formatter));
+                    entity.setOutlineWidth96(getMergedCellValue(sheet, i, 19, row.getCell(19), evaluator, formatter));
+                    entity.setGrooveWidth97(getMergedCellValue(sheet, i, 20, row.getCell(20), evaluator, formatter));
+                    entity.setGrooveWidth98(getMergedCellValue(sheet, i, 21, row.getCell(21), evaluator, formatter));
+                    entity.setGrooveWidth99(getMergedCellValue(sheet, i, 22, row.getCell(22), evaluator, formatter));
+                    entity.setGrooveWidth100(getMergedCellValue(sheet, i, 23, row.getCell(23), evaluator, formatter));
+                    entity.setGrooveWidth101(getMergedCellValue(sheet, i, 24, row.getCell(24), evaluator, formatter));
+                    entity.setGrooveLength102(getMergedCellValue(sheet, i, 25, row.getCell(25), evaluator, formatter));
+                    entity.setAllBodyInk103(getMergedCellValue(sheet, i, 26, row.getCell(26), evaluator, formatter));
+                    entity.setLengthDifference(getMergedCellValue(sheet, i, 27, row.getCell(27), evaluator, formatter));
+                    entity.setWidthDifference(getMergedCellValue(sheet, i, 28, row.getCell(28), evaluator, formatter));
+                    entity.setGrooveWidthDifference(getMergedCellValue(sheet, i, 29, row.getCell(29), evaluator, formatter));
+                    entity.setMachineNumber(getMergedCellValue(sheet, i, 30, row.getCell(30), evaluator, formatter));
+                    entity.setStatus("1"); // 默认状态
+                    entity.setNoted(getMergedCellValue(sheet, i, 31, row.getCell(31), evaluator, formatter));
+
+                    if (isValidData(entity)) {
+                        mapper.insert(entity);
                         successCount++;
-                    } catch (Exception e) {
-                        log.error("插入记录失败：{}, 错误：{}", data.getRecordTime(), e.getMessage());
+                        log.debug("成功读取并保存第{}行数据", i + 1);
+                    } else {
+                        log.warn("第{}行数据不完整，跳过", i + 1);
                     }
+
+                } catch (Exception e) {
+                    log.error("处理第{}行数据时发生错误：{}", i + 1, e.getMessage());
                 }
             }
 
-            workbook.close();
-            log.info("Excel文件处理完成，成功导入{}条记录", successCount);
-
-        } catch (Exception e) {
-            log.error("处理Excel文件失败: {}", e.getMessage());
-            throw new RuntimeException("Excel文件处理失败: " + e.getMessage());
+        } catch (IOException e) {
+            log.error("Excel文件读取失败: {}", e.getMessage());
+            throw new RuntimeException("Excel文件读取失败", e);
         }
 
+        log.info("数据导入完成，成功导入{}条记录", successCount);
         return successCount;
     }
 
-    private boolean isEmptyRow(Row row) {
-        if (row == null) return true;
-
-        for (int i = 0; i < 18; i++) {
-            Cell cell = row.getCell(i);
-            if (cell != null && !getCellValueAsString(cell).trim().isEmpty()) {
-                return false;
-            }
-        }
-        return true;
+    private boolean isValidData(DfExcelC98bWireframe20240624Manual data) {
+        return data.getRecordTime() != null && !data.getRecordTime().isEmpty()
+                && data.getMachineNumber() != null && !data.getMachineNumber().isEmpty();
     }
 
-    private DfExcelC98bRCornerGroove readRowData(Row row) {
-        DfExcelC98bRCornerGroove data = new DfExcelC98bRCornerGroove();
-
-        data.setRecordTime(getCellValueAsString(row.getCell(0)));
-        data.setR8(getCellValueAsBigDecimal(row.getCell(1)));
-        data.setR1(getCellValueAsBigDecimal(row.getCell(2)));
-        data.setR2(getCellValueAsBigDecimal(row.getCell(3)));
-        data.setR3(getCellValueAsBigDecimal(row.getCell(4)));
-        data.setR4(getCellValueAsBigDecimal(row.getCell(5)));
-        data.setRightOutside(getCellValueAsBigDecimal(row.getCell(6)));
-        data.setRightInside(getCellValueAsBigDecimal(row.getCell(7)));
-        data.setLeftInside(getCellValueAsBigDecimal(row.getCell(8)));
-        data.setLeftOutside(getCellValueAsBigDecimal(row.getCell(9)));
-        data.setGroove1(getCellValueAsBigDecimal(row.getCell(10)));
-        data.setGroove2(getCellValueAsBigDecimal(row.getCell(11)));
-        data.setGroove3(getCellValueAsBigDecimal(row.getCell(12)));
-        data.setGroove4(getCellValueAsBigDecimal(row.getCell(13)));
-        data.setGroove5(getCellValueAsBigDecimal(row.getCell(14)));
-
-        Cell machineCell = row.getCell(15);
-        if (machineCell != null) {
-            if (machineCell.getCellType() == CellType.NUMERIC) {
-                data.setMachineNumber((int) machineCell.getNumericCellValue());
-            } else {
-                String value = machineCell.getStringCellValue().trim();
-                if (!value.isEmpty()) {
-                    data.setMachineNumber(Integer.parseInt(value));
-                }
-            }
-        }
-
-        data.setStatus(getCellValueAsString(row.getCell(16)));
-        data.setNoted(getCellValueAsString(row.getCell(17)));
-
-        return data;
+    private boolean isFirstColumnEmpty(Row row) {
+        Cell firstCell = row.getCell(0);
+        return firstCell == null || firstCell.getCellType() == CellType.BLANK;
     }
 
-    private String getCellValueAsString(Cell cell) {
-        if (cell == null) return "";
+    private String getMergedCellValue(Sheet sheet, int row, int col, Cell cell, FormulaEvaluator evaluator, DataFormatter formatter) {
+        for (int i = 0; i < sheet.getNumMergedRegions(); i++) {
+            CellRangeAddress region = sheet.getMergedRegion(i);
+            if (region.isInRange(row, col)) {
+                Cell firstCell = sheet.getRow(region.getFirstRow()).getCell(region.getFirstColumn());
+                return getCellValue(firstCell, evaluator, formatter);
+            }
+        }
+        return getCellValue(cell, evaluator, formatter);
+    }
+
+    private String getCellValue(Cell cell, FormulaEvaluator evaluator, DataFormatter formatter) {
+        if (cell == null) {
+            return "";
+        }
 
         switch (cell.getCellType()) {
             case STRING:
@@ -145,31 +165,34 @@ public class DfExcelC98bWireframe20240624ManualServiceImpl extends ServiceImpl<D
             case NUMERIC:
                 if (DateUtil.isCellDateFormatted(cell)) {
                     return cell.getLocalDateTimeCellValue().toString();
+                } else {
+                    // 使用DataFormatter来确保数字格式的一致性
+                    return formatter.formatCellValue(cell).trim();
                 }
-                return String.valueOf(cell.getNumericCellValue());
+            case BOOLEAN:
+                return String.valueOf(cell.getBooleanCellValue());
+            case FORMULA:
+                try {
+                    return formatter.formatCellValue(cell, evaluator).trim();
+                } catch (Exception e) {
+                    return cell.getCellFormula();
+                }
+            case BLANK:
+                return "";
+            case ERROR:
+                return "";
             default:
                 return "";
         }
     }
 
-    private BigDecimal getCellValueAsBigDecimal(Cell cell) {
-        if (cell == null) return null;
 
-        try {
-            switch (cell.getCellType()) {
-                case NUMERIC:
-                    return BigDecimal.valueOf(cell.getNumericCellValue());
-                case STRING:
-                    String value = cell.getStringCellValue().trim();
-                    return value.isEmpty() ? null : new BigDecimal(value);
-                default:
-                    return null;
-            }
-        } catch (Exception e) {
-            log.warn("转换单元格值到BigDecimal失败: {}", e.getMessage());
-            return null;
-        }
-    }
+
+
+
+
+
+
 
 
 }

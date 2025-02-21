@@ -33,7 +33,7 @@ public class DfExcelC98bInkOilConfigServiceImpl extends ServiceImpl<DfExcelC98bI
     private DfExcelC98bInkOilConfigMapper configMapper;
 
 
-    public int importOilConfigFromExcel(MultipartFile file) {
+    public int importOilConfigFromExcel(MultipartFile file, String batchId) {
         log.info("开始读取Excel配置文件...");
         List<DfExcelC98bInkOilConfig> configList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
@@ -68,6 +68,8 @@ public class DfExcelC98bInkOilConfigServiceImpl extends ServiceImpl<DfExcelC98bI
                         values[j] = getMergedCellValue(sheet, i, j, cell, evaluator, formatter);
                     }
 
+
+                    config.setBatchId(batchId);
                     // 设置实体类属性
                     config.setCol1(values[0]);
                     config.setCol2(values[1]);
@@ -98,7 +100,7 @@ public class DfExcelC98bInkOilConfigServiceImpl extends ServiceImpl<DfExcelC98bI
     }
 
     @Transactional(rollbackFor = Exception.class)
-    private int batchSaveConfig(List<DfExcelC98bInkOilConfig> configList) {
+    public int batchSaveConfig(List<DfExcelC98bInkOilConfig> configList) {
         if (configList.isEmpty()) {
             return 0;
         }

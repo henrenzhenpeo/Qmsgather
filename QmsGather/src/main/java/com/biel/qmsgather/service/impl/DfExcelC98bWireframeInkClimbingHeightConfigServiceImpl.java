@@ -36,8 +36,8 @@ public class DfExcelC98bWireframeInkClimbingHeightConfigServiceImpl extends Serv
     @Autowired
     private DfExcelC98bWireframeInkClimbingHeightConfigMapper configMapper;
 
-    @Override
-    public int importConfigFromExcel(MultipartFile file) {
+
+    public int importConfigFromExcel(MultipartFile file, String batchId) {
         List<DfExcelC98bWireframeInkClimbingHeightConfig> dataList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
 
@@ -56,6 +56,7 @@ public class DfExcelC98bWireframeInkClimbingHeightConfigServiceImpl extends Serv
                     DfExcelC98bWireframeInkClimbingHeightConfig config = new DfExcelC98bWireframeInkClimbingHeightConfig();
 
                     try {
+                        config.setBatchId(batchId);
                         // 设置各个字段的值
                         config.setStandardType(getCellValueAsString(row.getCell(0)));
                         config.setUpperLongSideInkToGlassFrontHeight(getCellValueAsString(row.getCell(1)));

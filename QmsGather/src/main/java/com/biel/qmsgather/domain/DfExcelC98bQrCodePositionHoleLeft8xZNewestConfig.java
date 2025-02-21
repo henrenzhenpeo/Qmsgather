@@ -103,6 +103,8 @@ public class DfExcelC98bQrCodePositionHoleLeft8xZNewestConfig implements Seriali
      */
     private BigDecimal leafTopToC;
 
+    private String BatchId;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

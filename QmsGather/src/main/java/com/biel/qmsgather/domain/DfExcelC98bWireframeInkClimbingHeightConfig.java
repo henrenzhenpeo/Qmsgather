@@ -52,6 +52,8 @@ public class DfExcelC98bWireframeInkClimbingHeightConfig implements Serializable
      */
     private String grooveInkToGlassBackHeight;
 
+    private String BatchId;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

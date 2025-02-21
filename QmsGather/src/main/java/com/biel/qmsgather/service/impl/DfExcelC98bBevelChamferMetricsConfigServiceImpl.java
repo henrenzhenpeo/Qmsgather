@@ -36,7 +36,8 @@ public class DfExcelC98bBevelChamferMetricsConfigServiceImpl extends ServiceImpl
 
 
     @Transactional(rollbackFor = Exception.class)
-    public int importConfigFromExcel(MultipartFile file) {
+    public int importConfigFromExcel(MultipartFile file, String batchId) {
+
         List<DfExcelC98bBevelChamferMetricsConfig> dataList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
 
@@ -55,6 +56,9 @@ public class DfExcelC98bBevelChamferMetricsConfigServiceImpl extends ServiceImpl
 
                     try {
                         DfExcelC98bBevelChamferMetricsConfig config = new DfExcelC98bBevelChamferMetricsConfig();
+
+                        config.setBatchId(batchId);
+
 
                         // 设置类型（标准/上限/下限/均值）
                         String[] types = {"标准", "上限", "下限", "均值"};

@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface DfExcelC98bQrCodePositionHoleLeft8xZNewestFixedService extends IService<DfExcelC98bQrCodePositionHoleLeft8xZNewestFixed> {
 
 
-    public int importExcelData(MultipartFile file);
+    public int importExcelData(MultipartFile file,String batchId);
 
 
 }

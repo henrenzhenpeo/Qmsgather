@@ -21,6 +21,10 @@ public class DfExcelC98bBevelChamferMetricsData implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer id;
 
+
+
+
+
     /**
      * 
      */
@@ -115,6 +119,9 @@ public class DfExcelC98bBevelChamferMetricsData implements Serializable {
      * 
      */
     private Integer count;
+
+
+    private String BatchId;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

@@ -40,7 +40,7 @@ public class DfExcelC98bInkIr2ServiceImpl extends ServiceImpl<DfExcelC98bInkIr2M
 
 
     @Transactional(rollbackFor = Exception.class)
-    public Map<String, Object> importExcelData(MultipartFile file) {
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId) {
         Map<String, Object> result = new HashMap<>();
         log.info("开始读取Excel文件...");
 
@@ -80,6 +80,7 @@ public class DfExcelC98bInkIr2ServiceImpl extends ServiceImpl<DfExcelC98bInkIr2M
                 try {
                     DfExcelC98bInkIr2 data = new DfExcelC98bInkIr2();
 
+                    data.setBatchId(batchId);
                     data.setTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
                     data.setRx(getMergedCellValue(sheet, i, 1, row.getCell(1), evaluator, formatter));
                     data.setTx(getMergedCellValue(sheet, i, 2, row.getCell(2), evaluator, formatter));

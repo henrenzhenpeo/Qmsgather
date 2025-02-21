@@ -2,33 +2,58 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.biel.qmsgather.mapper.DfExcelC98bWireframe20240624ManualMapper">
+<mapper namespace="generator.mapper.DfExcelC98bWireframe20240624ManualMapper">
 
-    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfExcelC98bWireframe20240624Manual">
+    <resultMap id="BaseResultMap" type="generator.domain.DfExcelC98bWireframe20240624Manual">
+            <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="recordTime" column="record_time" jdbcType="VARCHAR"/>
-            <result property="outlineWidth95" column="outline_width_95" jdbcType="DECIMAL"/>
-            <result property="outlineWidth96" column="outline_width_96" jdbcType="DECIMAL"/>
-            <result property="grooveWidth97" column="groove_width_97" jdbcType="DECIMAL"/>
-            <result property="grooveWidth98" column="groove_width_98" jdbcType="DECIMAL"/>
-            <result property="grooveWidth99" column="groove_width_99" jdbcType="DECIMAL"/>
-            <result property="grooveWidth100" column="groove_width_100" jdbcType="DECIMAL"/>
-            <result property="grooveWidth101" column="groove_width_101" jdbcType="DECIMAL"/>
-            <result property="grooveLength102" column="groove_length_102" jdbcType="DECIMAL"/>
-            <result property="allBodyInk103" column="all_body_ink_103" jdbcType="DECIMAL"/>
-            <result property="lengthDifference" column="length_difference" jdbcType="DECIMAL"/>
-            <result property="widthDifference" column="width_difference" jdbcType="DECIMAL"/>
-            <result property="grooveWidthDifference" column="groove_width_difference" jdbcType="DECIMAL"/>
-            <result property="machineNumber" column="machine_number" jdbcType="INTEGER"/>
+            <result property="y1" column="y1" jdbcType="VARCHAR"/>
+            <result property="y1XF" column="y1_x_f" jdbcType="VARCHAR"/>
+            <result property="y2" column="y2" jdbcType="VARCHAR"/>
+            <result property="xdz3" column="xdz3" jdbcType="VARCHAR"/>
+            <result property="xdz4" column="xdz4" jdbcType="VARCHAR"/>
+            <result property="y25y2" column="y25y2" jdbcType="VARCHAR"/>
+            <result property="y284" column="y284" jdbcType="VARCHAR"/>
+            <result property="y26y1" column="y26y1" jdbcType="VARCHAR"/>
+            <result property="x7" column="x7" jdbcType="VARCHAR"/>
+            <result property="x8" column="x8" jdbcType="VARCHAR"/>
+            <result property="r1" column="r1" jdbcType="VARCHAR"/>
+            <result property="r2" column="r2" jdbcType="VARCHAR"/>
+            <result property="r3" column="r3" jdbcType="VARCHAR"/>
+            <result property="r4" column="r4" jdbcType="VARCHAR"/>
+            <result property="shapeLength1" column="shape_length1" jdbcType="VARCHAR"/>
+            <result property="shapeLength2" column="shape_length2" jdbcType="VARCHAR"/>
+            <result property="outlineWidth94" column="outline_width_94" jdbcType="VARCHAR"/>
+            <result property="outlineWidth95" column="outline_width_95" jdbcType="VARCHAR"/>
+            <result property="outlineWidth96" column="outline_width_96" jdbcType="VARCHAR"/>
+            <result property="grooveWidth97" column="groove_width_97" jdbcType="VARCHAR"/>
+            <result property="grooveWidth98" column="groove_width_98" jdbcType="VARCHAR"/>
+            <result property="grooveWidth99" column="groove_width_99" jdbcType="VARCHAR"/>
+            <result property="grooveWidth100" column="groove_width_100" jdbcType="VARCHAR"/>
+            <result property="grooveWidth101" column="groove_width_101" jdbcType="VARCHAR"/>
+            <result property="grooveLength102" column="groove_length_102" jdbcType="VARCHAR"/>
+            <result property="allBodyInk103" column="all_body_ink_103" jdbcType="VARCHAR"/>
+            <result property="lengthDifference" column="length_difference" jdbcType="VARCHAR"/>
+            <result property="widthDifference" column="width_difference" jdbcType="VARCHAR"/>
+            <result property="grooveWidthDifference" column="groove_width_difference" jdbcType="VARCHAR"/>
+            <result property="machineNumber" column="machine_number" jdbcType="VARCHAR"/>
             <result property="status" column="status" jdbcType="VARCHAR"/>
             <result property="noted" column="noted" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        record_time,outline_width_95,outline_width_96,
+        id,record_time,y1,
+        y1_x_f,y2,xdz3,
+        xdz4,y25y2,y284,
+        y26y1,x7,x8,
+        r1,r2,r3,
+        r4,shape_length1,shape_length2,
+        outline_width_94,outline_width_95,outline_width_96,
         groove_width_97,groove_width_98,groove_width_99,
         groove_width_100,groove_width_101,groove_length_102,
         all_body_ink_103,length_difference,width_difference,
         groove_width_difference,machine_number,status,
-        noted
+        noted,batch_id
     </sql>
 </mapper>

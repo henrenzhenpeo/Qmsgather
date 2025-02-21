@@ -13,7 +13,7 @@ public interface DfExcelC98bInkBm3ConfigService extends IService<DfExcelC98bInkB
 
 
 
-    public int importConfigFromExcel(MultipartFile file);
+    public int importConfigFromExcel(MultipartFile file, String batchId);
 
 
 

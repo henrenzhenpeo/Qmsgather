@@ -12,5 +12,5 @@ import org.springframework.web.multipart.MultipartFile;
 public interface DfExcelC98bInkOilConfigService extends IService<DfExcelC98bInkOilConfig> {
 
 
-    public int importOilConfigFromExcel(MultipartFile file);
+    public int importOilConfigFromExcel(MultipartFile file, String batchId);
 }

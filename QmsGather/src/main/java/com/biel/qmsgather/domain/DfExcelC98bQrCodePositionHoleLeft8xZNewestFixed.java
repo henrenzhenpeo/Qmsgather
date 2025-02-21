@@ -111,6 +111,9 @@ public class DfExcelC98bQrCodePositionHoleLeft8xZNewestFixed implements Serializ
      */
     private String status;
 
+
+    private String BatchId;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

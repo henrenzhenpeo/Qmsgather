@@ -116,6 +116,15 @@ public class DfExcelC98bBevelChamferMetricsConfig implements Serializable {
      */
     private Integer count;
 
+
+    private String BatchId;
+
+
+
+
+
+
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface DfExcelC98bRCornerGrooveService extends IService<DfExcelC98bRCornerGroove> {
 
 
-    int importExcelData(MultipartFile file);
+    int importExcelData(MultipartFile file,String batchId);
 
 
 }

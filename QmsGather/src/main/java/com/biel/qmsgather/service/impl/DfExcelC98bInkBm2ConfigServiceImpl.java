@@ -32,7 +32,7 @@ public class DfExcelC98bInkBm2ConfigServiceImpl extends ServiceImpl<DfExcelC98bI
     private DfExcelC98bInkBm2ConfigMapper configMapper;
 
 
-    public int importBm2ConfigFromExcel(MultipartFile file) {
+    public int importBm2ConfigFromExcel(MultipartFile file, String batchId) {
         List<DfExcelC98bInkBm2Config> dataList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
 
@@ -60,6 +60,7 @@ public class DfExcelC98bInkBm2ConfigServiceImpl extends ServiceImpl<DfExcelC98bI
                     DfExcelC98bInkBm2Config config = new DfExcelC98bInkBm2Config();
 
                     try {
+                        config.setBatchId(batchId);
                         // 获取并设置数据
                         config.setCol1(getMergedCellValue(sheet, rowIndex, 0, row.getCell(0), evaluator, formatter));
                         config.setCol2(getMergedCellValue(sheet, rowIndex, 1, row.getCell(1), evaluator, formatter));

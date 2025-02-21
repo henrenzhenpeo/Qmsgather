@@ -13,6 +13,6 @@ import java.util.Map;
 */
 public interface DfExcelProcesscontrolconfigService extends IService<DfExcelProcesscontrolconfig> {
 
-    public Map<String, Object> importExcelData(MultipartFile file);
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId);
 
 }

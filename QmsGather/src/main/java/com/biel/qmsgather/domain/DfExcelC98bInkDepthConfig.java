@@ -55,6 +55,8 @@ public class DfExcelC98bInkDepthConfig implements Serializable {
      */
     private String col7;
 
+    private String BatchId;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

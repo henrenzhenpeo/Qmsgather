@@ -33,7 +33,7 @@ public class DfExcelC98bInkBm3andoilConfigServiceImpl extends ServiceImpl<DfExce
         @Autowired
         private DfExcelC98bInkBm3andoilConfigMapper configMapper;
 
-        public int importConfigFromExcel(MultipartFile file) {
+        public int importConfigFromExcel(MultipartFile file, String batchId) {
             log.info("开始读取Excel文件...");
             List<DfExcelC98bInkBm3andoilConfig> configList = new ArrayList<>();
             ZipSecureFile.setMinInflateRatio(0.001);
@@ -68,6 +68,8 @@ public class DfExcelC98bInkBm3andoilConfigServiceImpl extends ServiceImpl<DfExce
                         values[j] = getMergedCellValue(sheet, i, j, cell, evaluator, formatter);
                     }
 
+
+                    config.setBatchId(batchId);
                     // 设置实体对象的属性
                     config.setCol1(values[0]);
                     config.setCol2(values[1]);

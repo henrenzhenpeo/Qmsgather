@@ -33,10 +33,15 @@ public class DfExcelProcesscontrolconfigServiceImpl extends ServiceImpl<DfExcelP
     implements DfExcelProcesscontrolconfigService{
 
 
+
+
+
+
+
     @Autowired
     private DfExcelProcesscontrolconfigMapper configMapper;
 
-    public Map<String, Object> importExcelData(MultipartFile file) {
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId) {
         Map<String, Object> result = new HashMap<>();
         int successCount = 0;
         int failCount = 0;
@@ -60,6 +65,9 @@ public class DfExcelProcesscontrolconfigServiceImpl extends ServiceImpl<DfExcelP
                 try {
                     DfExcelProcesscontrolconfig config = new DfExcelProcesscontrolconfig();
 
+
+
+                    config.setBatchId(batchId);
                     // 设置类型
                     config.setPunctuationsize(configTypes[rowIndex - 2]);
 
@@ -153,11 +161,6 @@ public class DfExcelProcesscontrolconfigServiceImpl extends ServiceImpl<DfExcelP
             return "";
         }
     }
-
-
-
-
-
 
 
 

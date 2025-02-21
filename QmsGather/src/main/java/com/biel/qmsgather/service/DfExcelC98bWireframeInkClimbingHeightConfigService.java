@@ -17,7 +17,7 @@ public interface DfExcelC98bWireframeInkClimbingHeightConfigService extends ISer
      * @param file Excel文件
      * @return 成功导入的记录数
      */
-    int importConfigFromExcel(MultipartFile file);
+    int importConfigFromExcel(MultipartFile file, String batchId);
 
 
 

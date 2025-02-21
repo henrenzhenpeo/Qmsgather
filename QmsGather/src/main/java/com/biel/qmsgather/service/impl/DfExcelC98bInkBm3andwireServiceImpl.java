@@ -40,7 +40,7 @@ public class DfExcelC98bInkBm3andwireServiceImpl extends ServiceImpl<DfExcelC98b
 
 
     @Transactional(rollbackFor = Exception.class)
-    public Map<String, Object> importExcelData(MultipartFile file) {
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId) {
         Map<String, Object> result = new HashMap<>();
         ZipSecureFile.setMinInflateRatio(0.001);
 
@@ -76,6 +76,8 @@ public class DfExcelC98bInkBm3andwireServiceImpl extends ServiceImpl<DfExcelC98b
 
                 try {
                     DfExcelC98bInkBm3andwire data = new DfExcelC98bInkBm3andwire();
+
+                    data.setBatchId(batchId);
 
                     // 映射数据到实体类
                     data.setTime(getCellValue(row.getCell(0), evaluator, formatter));

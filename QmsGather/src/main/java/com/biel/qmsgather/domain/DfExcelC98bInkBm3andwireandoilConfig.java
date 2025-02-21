@@ -75,6 +75,8 @@ public class DfExcelC98bInkBm3andwireandoilConfig implements Serializable {
      */
     private String col11;
 
+    private String BatchId;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

@@ -38,7 +38,7 @@ public class DfExcelC98bInkBm3ServiceImpl extends ServiceImpl<DfExcelC98bInkBm3M
 
 
     @Transactional(rollbackFor = Exception.class)
-    public int importExcelData(MultipartFile file) {
+    public int importExcelData(MultipartFile file, String batchId) {
         List<DfExcelC98bInkBm3> dataList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
 
@@ -71,6 +71,7 @@ public class DfExcelC98bInkBm3ServiceImpl extends ServiceImpl<DfExcelC98bInkBm3M
 
                 try {
                     DfExcelC98bInkBm3 data = new DfExcelC98bInkBm3();
+                    data.setBatchId(batchId);
 
                     // 读取每列数据并设置到实体类中
                     data.setTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));

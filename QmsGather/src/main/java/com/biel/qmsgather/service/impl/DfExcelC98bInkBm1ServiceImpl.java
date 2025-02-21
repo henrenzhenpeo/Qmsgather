@@ -38,7 +38,7 @@ public class DfExcelC98bInkBm1ServiceImpl extends ServiceImpl<DfExcelC98bInkBm1M
 
 
     @Transactional(rollbackFor = Exception.class)
-    public Map<String, Object> importExcelData(MultipartFile file) {
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId) {
         Map<String, Object> result = new HashMap<>();
         List<DfExcelC98bInkBm1> dataList = new ArrayList<>();
         int successCount = 0;
@@ -83,6 +83,8 @@ public class DfExcelC98bInkBm1ServiceImpl extends ServiceImpl<DfExcelC98bInkBm1M
                     String time = getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter);
                     entity.setTime(time);
 
+
+                    entity.setBatchId(batchId);
                     // 设置J3-J17的值
                     entity.setJ3(new BigDecimal(getMergedCellValue(sheet, i, 1, row.getCell(1), evaluator, formatter)));
                     entity.setJ8(new BigDecimal(getMergedCellValue(sheet, i, 2, row.getCell(2), evaluator, formatter)));

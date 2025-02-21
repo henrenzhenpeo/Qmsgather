@@ -30,9 +30,9 @@ public class DfExcelC98bLayer2Program20240624ManualServiceImpl extends ServiceIm
     @Autowired
     private DfExcelC98bLayer2Program20240624ManualMapper mapper;
 
-    @Override
+
     @Transactional(rollbackFor = Exception.class)
-    public void importExcelData(MultipartFile file) throws Exception {
+    public void importExcelData(MultipartFile file, String batchId) throws Exception {
         List<DfExcelC98bLayer2Program20240624Manual> dataList = new ArrayList<>();
 
         try (Workbook workbook = new XSSFWorkbook(file.getInputStream())) {
@@ -52,6 +52,8 @@ public class DfExcelC98bLayer2Program20240624ManualServiceImpl extends ServiceIm
                     if (timeCell != null) {
                         data.setRecordTime(timeCell.toString().trim());
                     }
+
+                    data.setBatchId(batchId);
 
                     // 读取位置28-37的数值
                     data.setPosition28(getStringToBigDecimal(row.getCell(1)));

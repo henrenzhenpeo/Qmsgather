@@ -37,7 +37,7 @@ public class DfExcelC98bInkIr1ServiceImpl extends ServiceImpl<DfExcelC98bInkIr1M
 
 
     @Transactional(rollbackFor = Exception.class)
-    public int importFromExcel(MultipartFile file) {
+    public int importFromExcel(MultipartFile file, String batchId) {
         List<DfExcelC98bInkIr1> dataList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
         int startRow = 6;
@@ -72,6 +72,7 @@ public class DfExcelC98bInkIr1ServiceImpl extends ServiceImpl<DfExcelC98bInkIr1M
 
                     try {
                         DfExcelC98bInkIr1 data = new DfExcelC98bInkIr1();
+                        data.setBatchId(batchId);
 
                         data.setTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
                         data.setRx(getMergedCellValue(sheet, i, 1, row.getCell(1), evaluator, formatter));

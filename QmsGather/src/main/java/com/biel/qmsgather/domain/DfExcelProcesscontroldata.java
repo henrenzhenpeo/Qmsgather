@@ -91,6 +91,9 @@ public class DfExcelProcesscontroldata implements Serializable {
      */
     private String workstation;
 
+
+    private String BatchId;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

@@ -34,7 +34,7 @@ public class DfExcelC98bInkBm0ServiceImpl extends ServiceImpl<DfExcelC98bInkBm0M
     private DfExcelC98bInkBm0Mapper inkBm0Mapper;
 
     @Transactional(rollbackFor = Exception.class)
-    public Map<String, Object> importExcelData(MultipartFile file) {
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId) {
         Map<String, Object> result = new HashMap<>();
         List<DfExcelC98bInkBm0> dataList = new ArrayList<>();
         int successCount = 0;
@@ -76,6 +76,8 @@ public class DfExcelC98bInkBm0ServiceImpl extends ServiceImpl<DfExcelC98bInkBm0M
                 try {
                     DfExcelC98bInkBm0 data = new DfExcelC98bInkBm0();
 
+
+                    data.setBatchId(batchId);
                     data.setMeasurementTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
                     data.setSd1(getNumericCellValue(row.getCell(1)));
                     data.setSd3(getNumericCellValue(row.getCell(2)));

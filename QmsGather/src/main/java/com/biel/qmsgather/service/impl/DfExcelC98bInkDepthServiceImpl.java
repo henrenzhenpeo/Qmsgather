@@ -41,7 +41,7 @@ public class DfExcelC98bInkDepthServiceImpl extends ServiceImpl<DfExcelC98bInkDe
 
 
     @Transactional(rollbackFor = Exception.class)
-    public Map<String, Object> importExcelData(MultipartFile file) {
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId) {
         Map<String, Object> result = new HashMap<>();
         log.info("开始读取Excel文件: {}", file.getOriginalFilename());
 
@@ -82,6 +82,7 @@ public class DfExcelC98bInkDepthServiceImpl extends ServiceImpl<DfExcelC98bInkDe
 
                 try {
                     DfExcelC98bInkDepth inkDepth = new DfExcelC98bInkDepth();
+                    inkDepth.setBatchId(batchId);
                     inkDepth.setTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
                     inkDepth.setJ2p(getMergedCellValue(sheet, i, 1, row.getCell(1), evaluator, formatter));
                     inkDepth.setJ5p(getMergedCellValue(sheet, i, 2, row.getCell(2), evaluator, formatter));

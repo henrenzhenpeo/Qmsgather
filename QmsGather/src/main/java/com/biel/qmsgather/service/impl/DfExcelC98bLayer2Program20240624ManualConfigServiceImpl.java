@@ -33,8 +33,8 @@ public class DfExcelC98bLayer2Program20240624ManualConfigServiceImpl extends Ser
     @Autowired
     private DfExcelC98bLayer2Program20240624ManualConfigMapper configMapper;
 
-    @Override
-    public int importConfigFromExcel(MultipartFile file) {
+
+    public int importConfigFromExcel(MultipartFile file,String batchId) {
         List<DfExcelC98bLayer2Program20240624ManualConfig> configList = new ArrayList<>();
 
         try {

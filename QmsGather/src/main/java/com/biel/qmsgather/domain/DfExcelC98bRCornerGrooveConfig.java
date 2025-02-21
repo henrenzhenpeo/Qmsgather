@@ -99,6 +99,9 @@ public class DfExcelC98bRCornerGrooveConfig implements Serializable {
      */
     private BigDecimal groove5;
 
+    private String BatchId;
+
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

@@ -37,7 +37,7 @@ public class DfExcelC98bBevelChamferMetricsDataServiceImpl extends ServiceImpl<D
     @Autowired
     private DfExcelC98bBevelChamferMetricsDataMapper bevelDataMapper;
 
-    public Map<String, Object> importExcelData(MultipartFile file) {
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId) {
         Map<String, Object> result = new HashMap<>();
         ZipSecureFile.setMinInflateRatio(0.001);
 
@@ -64,6 +64,7 @@ public class DfExcelC98bBevelChamferMetricsDataServiceImpl extends ServiceImpl<D
 
                 try {
                     DfExcelC98bBevelChamferMetricsData data = new DfExcelC98bBevelChamferMetricsData();
+                    data.setBatchId(batchId);
 
                     // 设置各个字段的值
                     data.setTimepoint(getCellValueAsString(row.getCell(0)));

@@ -19,7 +19,7 @@ public interface DfExcelC98bWireframeInkClimbingHeightService extends IService<D
      * @param file 上传的Excel文件
      * @return 导入的数据条数
      */
-    int importFromExcel(MultipartFile file);
+    int importFromExcel(MultipartFile file,String batchId);
 
     /**
      * 批量保存数据

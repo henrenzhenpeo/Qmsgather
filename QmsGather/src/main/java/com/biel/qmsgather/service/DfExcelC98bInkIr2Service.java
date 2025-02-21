@@ -13,6 +13,6 @@ import java.util.Map;
 */
 public interface DfExcelC98bInkIr2Service extends IService<DfExcelC98bInkIr2> {
 
-    public Map<String, Object> importExcelData(MultipartFile file);
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId);
 
 }

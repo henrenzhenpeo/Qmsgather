@@ -2,10 +2,11 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.biel.qmsgather.mapper.DfExcelC98bLayer2Program20240624ManualMapper">
+<mapper namespace="generator.mapper.DfExcelC98bLayer2Program20240624ManualMapper">
 
-    <resultMap id="BaseResultMap" type="com.biel.qmsgather.domain.DfExcelC98bLayer2Program20240624Manual">
-            <result property="recordTime" column="record_time" jdbcType="TIMESTAMP"/>
+    <resultMap id="BaseResultMap" type="generator.domain.DfExcelC98bLayer2Program20240624Manual">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="recordTime" column="record_time" jdbcType="VARCHAR"/>
             <result property="position28" column="position_28" jdbcType="DECIMAL"/>
             <result property="position29" column="position_29" jdbcType="DECIMAL"/>
             <result property="position30" column="position_30" jdbcType="DECIMAL"/>
@@ -19,13 +20,15 @@
             <result property="machineNumber" column="machine_number" jdbcType="VARCHAR"/>
             <result property="status" column="status" jdbcType="VARCHAR"/>
             <result property="noted" column="noted" jdbcType="VARCHAR"/>
+            <result property="batchId" column="batch_id" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        record_time,position_28,position_29,
-        position_30,position_31,position_32,
-        position_33,position_34,position_35,
-        position_36,position_37,machine_number,
-        status,noted
+        id,record_time,position_28,
+        position_29,position_30,position_31,
+        position_32,position_33,position_34,
+        position_35,position_36,position_37,
+        machine_number,status,noted,
+        batch_id
     </sql>
 </mapper>

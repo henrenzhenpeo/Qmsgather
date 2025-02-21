@@ -13,5 +13,5 @@ public interface DfExcelC98bQrCodePositionHoleLeft8xZNewestConfigService extends
 
 
 
-    public int importConfigFromExcel(MultipartFile file);
+    public int importConfigFromExcel(MultipartFile file,String batchId);
 }

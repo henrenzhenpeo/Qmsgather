@@ -66,6 +66,8 @@ public class DfExcelC98bInkBm2 implements Serializable {
      */
     private String status;
 
+    private String BatchId;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

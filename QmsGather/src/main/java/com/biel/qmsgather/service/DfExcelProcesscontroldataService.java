@@ -2,6 +2,9 @@ package com.biel.qmsgather.service;
 
 import com.biel.qmsgather.domain.DfExcelProcesscontroldata;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 /**
 * @author 96901
@@ -10,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface DfExcelProcesscontroldataService extends IService<DfExcelProcesscontroldata> {
 
+
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId);
 }

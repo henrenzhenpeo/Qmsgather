@@ -37,7 +37,7 @@ public class DfExcelC98bInkOilServiceImpl extends ServiceImpl<DfExcelC98bInkOilM
 
 
     @Transactional(rollbackFor = Exception.class)
-    public int importExcelData(MultipartFile file) {
+    public int importExcelData(MultipartFile file, String batchId) {
         log.info("开始读取Excel文件: {}", file.getOriginalFilename());
 
         ZipSecureFile.setMinInflateRatio(0.001);
@@ -71,6 +71,7 @@ public class DfExcelC98bInkOilServiceImpl extends ServiceImpl<DfExcelC98bInkOilM
 
                 try {
                     DfExcelC98bInkOil inkOil = new DfExcelC98bInkOil();
+                    inkOil.setBatchId(batchId);
 
                     // 设置实体属性
                     inkOil.setTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));

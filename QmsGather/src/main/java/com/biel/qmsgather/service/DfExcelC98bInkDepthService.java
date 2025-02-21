@@ -14,5 +14,5 @@ import java.util.Map;
 public interface DfExcelC98bInkDepthService extends IService<DfExcelC98bInkDepth> {
 
 
-    public Map<String, Object> importExcelData(MultipartFile file);
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId);
 }

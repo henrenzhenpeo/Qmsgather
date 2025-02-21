@@ -12,5 +12,5 @@ import java.util.Map;
 * @createDate 2025-02-12 11:55:06
 */
 public interface DfExcelC98bBevelChamferMetricsDataService extends IService<DfExcelC98bBevelChamferMetricsData> {
-    public Map<String, Object> importExcelData(MultipartFile file);
+    public Map<String, Object> importExcelData(MultipartFile file, String batchId);
 }

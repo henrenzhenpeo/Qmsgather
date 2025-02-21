@@ -13,7 +13,7 @@ public interface DfExcelC98bLayer2Program20240624ManualService extends IService<
 
 
 
-    void importExcelData(MultipartFile file) throws Exception;
+    void importExcelData(MultipartFile file, String batchId) throws Exception;
 
 
 

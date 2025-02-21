@@ -14,6 +14,6 @@ import java.util.Map;
 public interface DfExcelC98bInkIr1ConfigService extends IService<DfExcelC98bInkIr1Config> {
 
 
-    public Map<String, Object> importIr1ConfigFromExcel(MultipartFile file);
+    public Map<String, Object> importIr1ConfigFromExcel(MultipartFile file, String batchId);
 
 }

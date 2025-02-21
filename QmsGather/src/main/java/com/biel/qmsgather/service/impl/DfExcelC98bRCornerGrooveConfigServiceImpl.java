@@ -36,8 +36,8 @@ public class DfExcelC98bRCornerGrooveConfigServiceImpl extends ServiceImpl<DfExc
     private DfExcelC98bRCornerGrooveConfigMapper cornerGrooveConfigMapper;
 
 
-    @Override
-    public int importExcelData(MultipartFile file) {
+
+    public int importExcelData(MultipartFile file,String batchId) {
         List<DfExcelC98bRCornerGrooveConfig> dataList = new ArrayList<>();
         ZipSecureFile.setMinInflateRatio(0.001);
 
@@ -56,6 +56,7 @@ public class DfExcelC98bRCornerGrooveConfigServiceImpl extends ServiceImpl<DfExc
                     DfExcelC98bRCornerGrooveConfig config = new DfExcelC98bRCornerGrooveConfig();
 
                     try {
+                        config.setBatchId(batchId);
                         // 设置各个字段的值
                         config.setStandardType(getCellValueAsString(row.getCell(0)));
 

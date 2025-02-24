@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +62,14 @@ public class DfExcelC98bQrCodePositionHoleLeft8xZNewestFixedServiceImpl extends 
                         data.setBatchId(batchId);
                         // 设置各个字段的值
                         data.setRecordTime(getCellValueAsString(row.getCell(0)));
+
+//                         String timepoint = getCellValueAsString(row.getCell(0));
+//
+// log.info("timepoint: {}", timepoint);;
+//                         // // 将字符串时间转换为LocalDateTime
+//                         data.setTimeVar(LocalDateTime.parse(timepoint, DateTimeFormatter.ofPattern("yyyy/MM/dd,HH:mm")));
+
+
                         data.setTwoDCodeHeight(getCellValueAsBigDecimal(row.getCell(1)));
                         data.setTwoDCodeWidth(getCellValueAsBigDecimal(row.getCell(2)));
                         data.setTwoDCodeCenterToC(getCellValueAsBigDecimal(row.getCell(3)));

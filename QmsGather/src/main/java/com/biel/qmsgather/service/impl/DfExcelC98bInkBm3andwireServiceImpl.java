@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,6 +80,16 @@ public class DfExcelC98bInkBm3andwireServiceImpl extends ServiceImpl<DfExcelC98b
                     DfExcelC98bInkBm3andwire data = new DfExcelC98bInkBm3andwire();
 
                     data.setBatchId(batchId);
+
+                    // String timeStr = getCellValue(row.getCell(0), evaluator, formatter);
+                    // timeStr = timeStr.replace("T", " ");
+                    //
+                    //
+                    // if (!timeStr.isEmpty()) {
+                    //     data.setTimeVar(LocalDateTime.parse(timeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                    // }
+
+
 
                     // 映射数据到实体类
                     data.setTime(getCellValue(row.getCell(0), evaluator, formatter));

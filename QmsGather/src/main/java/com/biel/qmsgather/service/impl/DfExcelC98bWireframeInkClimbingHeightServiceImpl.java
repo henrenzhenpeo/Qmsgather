@@ -14,6 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,10 +60,23 @@ public class DfExcelC98bWireframeInkClimbingHeightServiceImpl extends ServiceImp
                         Cell timeCell = row.getCell(0);
                         if (timeCell != null) {
                             data.setRecordTime(timeCell.toString().trim());
+
                         }
 
                         // 读取各项测量值
                         data.setBatchId(batchId);
+
+
+                        // String timepoint = getCellValueAsString(row.getCell(0));
+                        //
+                        //
+                        // // // 将字符串时间转换为LocalDateTime
+                        // data.setTimeVar(LocalDateTime.parse(timepoint, DateTimeFormatter.ofPattern("yyyy/MM/dd,HH:mm")));
+
+                        // data.setTimeVar(getStringToLocalDateTime(timeCell.toString().trim()));
+
+
+
                         data.setUpperLongSideInkToGlassFrontHeight(getStringToBigDecimal(row.getCell(1)));
                         data.setLowerLongSideInkToGlassFrontHeight(getStringToBigDecimal(row.getCell(2)));
                         data.setNonGrooveShortSideInkToGlassFrontHeight(getStringToBigDecimal(row.getCell(3)));
@@ -108,6 +124,10 @@ public class DfExcelC98bWireframeInkClimbingHeightServiceImpl extends ServiceImp
         return batchSave(dataList);
     }
 
+
+
+
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int batchSave(List<DfExcelC98bWireframeInkClimbingHeight> dataList) {
@@ -132,6 +152,43 @@ public class DfExcelC98bWireframeInkClimbingHeightServiceImpl extends ServiceImp
         return successCount;
     }
 
+
+
+
+
+    private String getCellValueAsString(Cell cell) {
+        if (cell == null) {
+            return null;
+        }
+        try {
+            switch (cell.getCellType()) {
+                case STRING:
+                    return cell.getStringCellValue();
+                case NUMERIC:
+                    if (DateUtil.isCellDateFormatted(cell)) {
+                        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(cell.getDateCellValue());
+                    }
+                    return BigDecimal.valueOf(cell.getNumericCellValue())
+                            .stripTrailingZeros().toPlainString();
+                default:
+                    return null;
+            }
+        } catch (Exception e) {
+            log.error("获取单元格值失败：{}", e.getMessage());
+            return null;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
     private boolean isValidData(DfExcelC98bWireframeInkClimbingHeight data) {
         return data.getRecordTime() != null && !data.getRecordTime().isEmpty()
                 && data.getUpperLongSideInkToGlassFrontHeight() != null
@@ -141,6 +198,8 @@ public class DfExcelC98bWireframeInkClimbingHeightServiceImpl extends ServiceImp
                 && data.getGrooveInkToGlassBackHeight() != null
                 && data.getMachineNumber() != null;
     }
+
+
 
     private BigDecimal getStringToBigDecimal(Cell cell) {
         if (cell == null) return null;
@@ -160,7 +219,24 @@ public class DfExcelC98bWireframeInkClimbingHeightServiceImpl extends ServiceImp
 
 
 
-
+    private LocalDateTime getStringToLocalDateTime(Cell cell) {
+        if (cell == null) return null;
+        try {
+            if (cell.getCellType() == CellType.STRING) {
+                String value = cell.getStringCellValue().trim();
+                return LocalDateTime.parse(value, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            } else if (cell.getCellType() == CellType.NUMERIC) {
+                if (DateUtil.isCellDateFormatted(cell)) {
+                    // 如果是日期类型，直接获取日期值并转换为LocalDateTime
+                    return cell.getLocalDateTimeCellValue();
+                }
+            }
+            return null;
+        } catch (Exception e) {
+            log.warn("单元格值转换为LocalDateTime失败: {}", e.getMessage());
+            return null;
+        }
+    }
 
 
 

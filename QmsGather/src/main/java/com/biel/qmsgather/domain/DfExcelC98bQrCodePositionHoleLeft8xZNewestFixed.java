@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.Data;
 
@@ -113,6 +114,8 @@ public class DfExcelC98bQrCodePositionHoleLeft8xZNewestFixed implements Serializ
 
 
     private String BatchId;
+
+    private LocalDateTime timeVar;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

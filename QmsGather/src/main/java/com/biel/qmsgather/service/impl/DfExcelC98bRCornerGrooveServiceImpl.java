@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,6 +111,16 @@ public class DfExcelC98bRCornerGrooveServiceImpl extends ServiceImpl<DfExcelC98b
 
         // 读取时间
         data.setRecordTime(getCellValueAsString(row.getCell(0)));
+
+        // String timepoint = getCellValueAsString(row.getCell(0));
+        //
+        //
+        // log.info("timepoint: {}", timepoint);
+        // // // 将字符串时间转换为LocalDateTime
+        // data.setTimeVar(LocalDateTime.parse(timepoint, DateTimeFormatter.ofPattern("yyyy/MM/dd,HH:mm")));
+
+
+
 
         // 读取R角数据
         data.setR8(getCellValueAsBigDecimal(row.getCell(1)));

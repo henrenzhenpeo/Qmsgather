@@ -2,6 +2,7 @@ package com.biel.qmsgather.controller;
 
 import com.biel.qmsgather.service.*;
 import com.biel.qmsgather.util.Result;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/ink-depth")
+@Api(tags = "C98B-油墨厚度")
 public class DfInkDepthController {
 
 

@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,6 +85,17 @@ public class DfExcelC98bInkDepthServiceImpl extends ServiceImpl<DfExcelC98bInkDe
                 try {
                     DfExcelC98bInkDepth inkDepth = new DfExcelC98bInkDepth();
                     inkDepth.setBatchId(batchId);
+                    //
+                    // String timeStr = getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter);
+                    // timeStr = timeStr.replace("T", " ");
+                    //
+                    //
+                    // if (!timeStr.isEmpty()) {
+                    //     inkDepth.setTimeVar(LocalDateTime.parse(timeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                    // }
+
+
+
                     inkDepth.setTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
                     inkDepth.setJ2p(getMergedCellValue(sheet, i, 1, row.getCell(1), evaluator, formatter));
                     inkDepth.setJ5p(getMergedCellValue(sheet, i, 2, row.getCell(2), evaluator, formatter));

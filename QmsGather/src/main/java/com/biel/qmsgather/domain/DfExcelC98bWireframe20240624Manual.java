@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * C98B线框20240624（手动）相关数据
@@ -190,6 +191,8 @@ public class DfExcelC98bWireframe20240624Manual implements Serializable {
      * 
      */
     private String batchId;
+
+    private LocalDateTime timeVar;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

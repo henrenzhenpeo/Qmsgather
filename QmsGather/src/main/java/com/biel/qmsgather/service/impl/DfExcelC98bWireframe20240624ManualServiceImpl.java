@@ -18,7 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +80,16 @@ public class DfExcelC98bWireframe20240624ManualServiceImpl extends ServiceImpl<D
 
                     entity.setBatchId(batchId);
                     // 设置所有字段值
+
+
+                    // String timeStr = getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter);
+                    // if (!timeStr.isEmpty()) {
+                    //     entity.setTimeVar(LocalDateTime.parse(timeStr, DateTimeFormatter.ofPattern("yyyy/MM/dd,HH:mm")));
+                    // }
+
+
+
+
                     entity.setRecordTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
                     entity.setY1(getMergedCellValue(sheet, i, 1, row.getCell(1), evaluator, formatter));
                     entity.setY1XF(getMergedCellValue(sheet, i, 2, row.getCell(2), evaluator, formatter));
@@ -190,7 +203,28 @@ public class DfExcelC98bWireframe20240624ManualServiceImpl extends ServiceImpl<D
 
 
 
-
+    private String getCellValueAsString(Cell cell) {
+        if (cell == null) {
+            return null;
+        }
+        try {
+            switch (cell.getCellType()) {
+                case STRING:
+                    return cell.getStringCellValue();
+                case NUMERIC:
+                    if (DateUtil.isCellDateFormatted(cell)) {
+                        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(cell.getDateCellValue());
+                    }
+                    return BigDecimal.valueOf(cell.getNumericCellValue())
+                            .stripTrailingZeros().toPlainString();
+                default:
+                    return null;
+            }
+        } catch (Exception e) {
+            log.error("获取单元格值失败：{}", e.getMessage());
+            return null;
+        }
+    }
 
 
 

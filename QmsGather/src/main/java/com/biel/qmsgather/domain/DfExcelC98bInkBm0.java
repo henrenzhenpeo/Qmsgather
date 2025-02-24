@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import lombok.Data;
 
 /**
@@ -83,6 +85,9 @@ public class DfExcelC98bInkBm0 implements Serializable {
 
 
     private String BatchId;
+
+
+    private LocalDateTime timeVar;
 
 
     @TableField(exist = false)

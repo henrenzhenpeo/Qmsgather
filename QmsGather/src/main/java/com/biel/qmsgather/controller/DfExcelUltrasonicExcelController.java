@@ -2,6 +2,7 @@ package com.biel.qmsgather.controller;
 
 import com.biel.qmsgather.service.DfExcelC98bUltrasonicContactAngleService;
 import com.biel.qmsgather.util.Result;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.Date;
 @Slf4j
 @RestController
 @RequestMapping("/api/ultrasonic")
+@Api(tags = "C98B-超声波水滴角")
 public class DfExcelUltrasonicExcelController {
 
     @Autowired

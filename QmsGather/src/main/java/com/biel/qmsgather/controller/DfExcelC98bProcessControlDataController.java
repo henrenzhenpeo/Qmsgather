@@ -4,6 +4,7 @@ import com.biel.qmsgather.service.DfExcelProcesscontrolconfigService;
 import com.biel.qmsgather.service.DfExcelProcesscontroldataService;
 
 import com.biel.qmsgather.util.Result;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/process-control")
 @Slf4j
+@Api(tags = "SSB C98B 过程管控记录")
 public class DfExcelC98bProcessControlDataController {
 
     @Autowired
@@ -73,4 +75,9 @@ public class DfExcelC98bProcessControlDataController {
         // 生成批次号格式: 文件名_时间戳
         return baseFileName + "_" + timestamp;
     }
+
+
+
+
+
 }

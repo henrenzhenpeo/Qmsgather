@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -82,6 +84,17 @@ public class DfExcelC98bInkBm1ServiceImpl extends ServiceImpl<DfExcelC98bInkBm1M
                     // 设置时间
                     String time = getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter);
                     entity.setTime(time);
+
+
+
+                    // String timeStr = getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter);
+                    // timeStr = timeStr.replace("T", " ");
+                    //
+                    //
+                    // if (!timeStr.isEmpty()) {
+                    //     entity.setTimeVar(LocalDateTime.parse(timeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                    // }
+
 
 
                     entity.setBatchId(batchId);

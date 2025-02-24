@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import lombok.Data;
 
 /**
@@ -93,6 +95,8 @@ public class DfExcelProcesscontroldata implements Serializable {
 
 
     private String BatchId;
+
+    private LocalDateTime timeVar;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

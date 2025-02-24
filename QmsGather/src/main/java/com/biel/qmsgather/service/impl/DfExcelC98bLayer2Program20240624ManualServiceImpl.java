@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,8 +56,36 @@ public class DfExcelC98bLayer2Program20240624ManualServiceImpl extends ServiceIm
                         data.setRecordTime(timeCell.toString().trim());
                     }
 
+
+
                     data.setBatchId(batchId);
 
+
+
+                   //  Cell timeCells = row.getCell(0);
+                   //  if (timeCells != null) {
+                   //      String timeStr = timeCell.toString().trim();
+                   // // 保留原有的字符串格式
+                   //
+                   //      try {
+                   //          // 定义日期时间格式
+                   //          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd,HH:mm");
+                   //          // 解析字符串为LocalDateTime
+                   //          LocalDateTime dateTime = LocalDateTime.parse(timeStr, formatter);
+                   //          data.setTimeVar(dateTime);
+                   //      } catch (Exception e) {
+                   //          log.error("时间转换失败: {}, 原始值: {}", e.getMessage(), timeStr);
+                   //          // 可以选择抛出异常或继续处理
+                   //          throw new RuntimeException("时间格式转换失败：" + e.getMessage());
+                   //      }
+                   //  }
+// 读取时间
+
+                    // String timepoint = getCellValueAsString(row.getCell(0));
+// log.info("timepoint:{}",timepoint);
+//
+//                     // // 将字符串时间转换为LocalDateTime
+//                      data.setTimeVar(LocalDateTime.parse(timepoint, DateTimeFormatter.ofPattern("yyyy/MM/dd,HH:mm")));
                     // 读取位置28-37的数值
                     data.setPosition28(getStringToBigDecimal(row.getCell(1)));
                     data.setPosition29(getStringToBigDecimal(row.getCell(2)));
@@ -142,6 +173,31 @@ public class DfExcelC98bLayer2Program20240624ManualServiceImpl extends ServiceIm
 
 
 
+
+
+    private String getCellValueAsString(Cell cell) {
+        if (cell == null) {
+            return null;
+        }
+        try {
+            switch (cell.getCellType()) {
+                case STRING:
+                    return cell.getStringCellValue().trim();
+                case NUMERIC:
+                    if (DateUtil.isCellDateFormatted(cell)) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd, HH:mm");
+                        return sdf.format(cell.getDateCellValue());
+                    }
+                    return BigDecimal.valueOf(cell.getNumericCellValue())
+                            .stripTrailingZeros().toPlainString();
+                default:
+                    return null;
+            }
+        } catch (Exception e) {
+            log.error("获取单元格值失败：{}", e.getMessage());
+            return null;
+        }
+    }
 
 
 

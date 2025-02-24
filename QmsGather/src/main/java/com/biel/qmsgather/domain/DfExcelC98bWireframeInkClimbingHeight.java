@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.sun.org.apache.xpath.internal.objects.XString;
@@ -64,6 +65,8 @@ public class DfExcelC98bWireframeInkClimbingHeight implements Serializable {
     private String status;
 
     private String BatchId;
+
+    private LocalDateTime timeVar;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

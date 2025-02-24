@@ -3,6 +3,7 @@ package com.biel.qmsgather.controller;
 import com.biel.qmsgather.service.DfExcelC98bRCornerGrooveConfigService;
 import com.biel.qmsgather.service.DfExcelC98bRCornerGrooveService;
 import com.biel.qmsgather.util.Result;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/corner-groosve")
+@Api(tags = "C98B ICP-十字定位（凹槽向右）")
 public class DfExcelC98bRCornerGrooveController {
 
     @Autowired

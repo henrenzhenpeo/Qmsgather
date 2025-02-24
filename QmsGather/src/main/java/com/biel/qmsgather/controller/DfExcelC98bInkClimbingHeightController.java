@@ -3,6 +3,7 @@ package com.biel.qmsgather.controller;
 import com.biel.qmsgather.service.DfExcelC98bWireframeInkClimbingHeightConfigService;
 import com.biel.qmsgather.service.DfExcelC98bWireframeInkClimbingHeightService;
 import com.biel.qmsgather.util.Result;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/ink-climbing-height")
+@Api(tags = "C98B线框爬墨高度数据接口", description = "处理C98B线框爬墨高度的Excel数据导入")
 public class DfExcelC98bInkClimbingHeightController {
 
     @Autowired
@@ -36,12 +38,12 @@ public class DfExcelC98bInkClimbingHeightController {
 
         // 检查文件格式
         String fileName = file.getOriginalFilename();
-        if (fileName == null || !fileName.endsWith(".xlsx")) {
-            return new Result<>(500, "请上传Excel文件(.xlsx格式)");
+        if (fileName == null || !fileName.endsWith(".xls")) {
+            return new Result<>(500, "请上传Excel文件(.xls格式)");
         }
 
         // 检查文件名前缀
-        String expectedPrefix = "C98B 线框爬墨高度";
+        String expectedPrefix = "C98B  线框油墨爬高";
         if (!fileName.startsWith(expectedPrefix)) {
             return new Result<>(500, "文件名格式错误，应以 '" + expectedPrefix + "' 开头");
         }

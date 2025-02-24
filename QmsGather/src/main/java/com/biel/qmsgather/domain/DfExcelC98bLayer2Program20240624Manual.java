@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * C98B二层程序20240624（手动）相关数据
@@ -96,6 +97,9 @@ public class DfExcelC98bLayer2Program20240624Manual implements Serializable {
      * 批次号
      */
     private String batchId;
+
+
+    private LocalDateTime timeVar;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

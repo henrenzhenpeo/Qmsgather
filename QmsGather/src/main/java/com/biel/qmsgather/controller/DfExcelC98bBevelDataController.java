@@ -1,8 +1,9 @@
 package com.biel.qmsgather.controller;
 
-import com.biel.qmsgather.service.C98bBevelDataService;
+
 import com.biel.qmsgather.service.DfExcelC98bBevelChamferMetricsConfigService;
 import com.biel.qmsgather.service.DfExcelC98bBevelChamferMetricsDataService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/bevel-data")
 @Slf4j
+@Api(tags = "C98B斜边数据导入接口", description = "处理C98B斜边和倒角数据的Excel导入")
 public class DfExcelC98bBevelDataController {
 
     @Autowired

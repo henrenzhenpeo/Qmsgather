@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,6 +76,13 @@ public class DfExcelProcesscontroldataServiceImpl extends ServiceImpl<DfExcelPro
 
                     // 读取并设置每个字段的值
                     data.setTimepoint(getCellValueAsString(row.getCell(0)));
+
+                    // String timepoint = getCellValueAsString(row.getCell(0));
+                    //
+                    //
+                    // // // 将字符串时间转换为LocalDateTime
+                    //  data.setTimeVar(LocalDateTime.parse(timepoint, DateTimeFormatter.ofPattern("yyyy/MM/dd,HH:mm")));
+
                     data.setOuterlengthupper(getCellValueAsBigDecimal(row.getCell(1)));
                     data.setOuterlengthlower(getCellValueAsBigDecimal(row.getCell(2)));
                     data.setOuterwidthupper(getCellValueAsBigDecimal(row.getCell(3)));

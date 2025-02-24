@@ -2,6 +2,7 @@ package com.biel.qmsgather.controller;
 
 import com.biel.qmsgather.service.*;
 import com.biel.qmsgather.util.Result;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/wire-frame")
+@Api(tags = "C98B线框20240624")
 public class DfExcelC98bWireframe20240624ManualController {
 
     @Autowired

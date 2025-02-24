@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,6 +80,22 @@ public class DfExcelC98bInkBm0ServiceImpl extends ServiceImpl<DfExcelC98bInkBm0M
 
 
                     data.setBatchId(batchId);
+
+
+                    //
+                    // String timeStr = getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter);
+                    //
+                    //
+                    // timeStr = timeStr.replace("T", " ");
+                    //
+                    //
+                    // if (!timeStr.isEmpty()) {
+                    //     data.setTimeVar(LocalDateTime.parse(timeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                    // }
+
+
+
+
                     data.setMeasurementTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));
                     data.setSd1(getNumericCellValue(row.getCell(1)));
                     data.setSd3(getNumericCellValue(row.getCell(2)));

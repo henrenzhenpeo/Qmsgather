@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +74,18 @@ public class DfExcelC98bInkOilServiceImpl extends ServiceImpl<DfExcelC98bInkOilM
                 try {
                     DfExcelC98bInkOil inkOil = new DfExcelC98bInkOil();
                     inkOil.setBatchId(batchId);
+
+
+                    // String timeStr = getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter);
+                    //
+                    //
+                    // timeStr = timeStr.replace("T", " ");
+                    //
+                    //
+                    // if (!timeStr.isEmpty()) {
+                    //     inkOil.setTimeVar(LocalDateTime.parse(timeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                    // }
+
 
                     // 设置实体属性
                     inkOil.setTime(getMergedCellValue(sheet, i, 0, row.getCell(0), evaluator, formatter));

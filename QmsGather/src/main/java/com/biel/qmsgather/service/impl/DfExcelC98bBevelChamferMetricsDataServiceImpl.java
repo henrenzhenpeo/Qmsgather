@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,7 +70,17 @@ public class DfExcelC98bBevelChamferMetricsDataServiceImpl extends ServiceImpl<D
 
                     // 设置各个字段的值
                     data.setTimepoint(getCellValueAsString(row.getCell(0)));
+
+                    // 设置timepoint和timeVar
+                    String timepoint = getCellValueAsString(row.getCell(0));
+
+                    //
+                    // // // 将字符串时间转换为LocalDateTime
+                    //  data.setTimeVar(LocalDateTime.parse(timepoint, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+
+
                     data.setLeftLongEdgeBevel(getCellValueAsBigDecimal(row.getCell(1)));
+
                     data.setLeftLongEdgeBevel1(getCellValueAsBigDecimal(row.getCell(2)));
                     data.setLowerShortEdgeBevel(getCellValueAsBigDecimal(row.getCell(3)));
                     data.setLowerShortEdgeBevel1(getCellValueAsBigDecimal(row.getCell(4)));

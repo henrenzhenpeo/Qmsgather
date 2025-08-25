@@ -32,8 +32,8 @@ public class Layer2ProgramController {
     @ApiOperation("导入Excel数据")
     public Result importExcel(@RequestParam("file") MultipartFile file) {
         try {
-            layer2ProgramService.importExcelData(file);
-            dfExcelC98bLayer2Program20240624ManualConfigService.importConfigFromExcel(file);
+            layer2ProgramService.importExcelData(file,"");
+            dfExcelC98bLayer2Program20240624ManualConfigService.importConfigFromExcel(file,"");
 
             return new Result(200,"百格mek接口上传成功");
         } catch (Exception e) {

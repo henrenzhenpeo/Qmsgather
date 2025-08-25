@@ -1,5 +1,13 @@
 package com.biel.qmsgather.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.api.R;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.biel.qmsgather.domain.dto.DfUpCgJindoResistanceDto;
+import com.biel.qmsgather.domain.dto.DfUpCgOrtBaigeTestDto;
+import com.biel.qmsgather.domain.upweb.DfUpCgJindoResistance;
 import com.biel.qmsgather.domain.upweb.DfUpCgOrtBaigeTest;
 import com.biel.qmsgather.domain.upweb.DfUpCgResistance;
 import com.biel.qmsgather.service.DfUpCgOrtBaigeTestService;
@@ -38,6 +46,31 @@ public class DfUpCgOrtBaigeTestController {
         }
 
         return new Result(500,"百格测试接口上传失败");
+    }
+
+
+    @PostMapping("/findJindoResistance")
+    @ApiOperation(value = "IR油电阻+零层电阻查询接口")
+    public R findJindoResistance(@RequestBody DfUpCgOrtBaigeTestDto dfUpCgOrtBaigeTestDto) {
+        QueryWrapper<DfUpCgOrtBaigeTest> dfUpCgOrtBaigeTestQueryWrapper = new QueryWrapper<>();
+
+        if (StringUtils.isNotEmpty(dfUpCgOrtBaigeTestDto.getProject())) {
+            dfUpCgOrtBaigeTestQueryWrapper.eq("project", dfUpCgOrtBaigeTestDto.getProject());
+        }
+        if (StringUtils.isNotEmpty(dfUpCgOrtBaigeTestDto.getFactory())) {
+            dfUpCgOrtBaigeTestQueryWrapper.eq("factory", dfUpCgOrtBaigeTestDto.getFactory());
+        }
+        if (StringUtils.isNotEmpty(dfUpCgOrtBaigeTestDto.getStage())) {
+            dfUpCgOrtBaigeTestQueryWrapper.eq("stage", dfUpCgOrtBaigeTestDto.getStage());
+        }
+
+        if (StringUtils.isNotEmpty(dfUpCgOrtBaigeTestDto.getStartTestDate()) && StringUtils.isNotEmpty(dfUpCgOrtBaigeTestDto.getEndTestDate())) {
+            dfUpCgOrtBaigeTestQueryWrapper.between("test_date",dfUpCgOrtBaigeTestDto.getStartTestDate(),dfUpCgOrtBaigeTestDto.getEndTestDate());
+
+        }
+
+        IPage<DfUpCgOrtBaigeTest> page = dfUpCgOrtBaigeTestService.page(new Page<>(dfUpCgOrtBaigeTestDto.getPageIndex(), dfUpCgOrtBaigeTestDto.getPageSize()), dfUpCgOrtBaigeTestQueryWrapper);
+        return R.ok(page);
     }
 
 }

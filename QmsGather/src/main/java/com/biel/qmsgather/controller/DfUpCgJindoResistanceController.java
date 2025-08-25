@@ -2,6 +2,14 @@ package com.biel.qmsgather.controller;
 
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.api.R;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.biel.qmsgather.domain.dto.DfUpCgBaigeMekDto;
+import com.biel.qmsgather.domain.dto.DfUpCgJindoResistanceDto;
+import com.biel.qmsgather.domain.upweb.DfUpCgBaigeMek;
 import com.biel.qmsgather.domain.upweb.DfUpCgJindoResistance;
 import com.biel.qmsgather.service.DfUpCgJindoResistanceService;
 import com.biel.qmsgather.util.Result;
@@ -41,5 +49,29 @@ public class DfUpCgJindoResistanceController {
         return new Result(500,"IR油电阻+零层电阻数据上传失败");
     }
 
+
+    @PostMapping("/findJindoResistance")
+    @ApiOperation(value = "IR油电阻+零层电阻查询接口")
+    public R findJindoResistance(@RequestBody DfUpCgJindoResistanceDto dfUpCgJindoResistanceDto) {
+        QueryWrapper<DfUpCgJindoResistance> dfUpCgJindoResistanceQueryWrapper = new QueryWrapper<>();
+
+        if (StringUtils.isNotEmpty(dfUpCgJindoResistanceDto.getProject())) {
+            dfUpCgJindoResistanceQueryWrapper.eq("project", dfUpCgJindoResistanceDto.getProject());
+        }
+        if (StringUtils.isNotEmpty(dfUpCgJindoResistanceDto.getFactory())) {
+            dfUpCgJindoResistanceQueryWrapper.eq("factory", dfUpCgJindoResistanceDto.getFactory());
+        }
+        if (StringUtils.isNotEmpty(dfUpCgJindoResistanceDto.getStage())) {
+            dfUpCgJindoResistanceQueryWrapper.eq("stage", dfUpCgJindoResistanceDto.getStage());
+        }
+
+        if (StringUtils.isNotEmpty(dfUpCgJindoResistanceDto.getStartTestDate()) && StringUtils.isNotEmpty(dfUpCgJindoResistanceDto.getEndTestDate())) {
+            dfUpCgJindoResistanceQueryWrapper.between("test_date",dfUpCgJindoResistanceDto.getStartTestDate(),dfUpCgJindoResistanceDto.getEndTestDate());
+
+        }
+
+        IPage<DfUpCgJindoResistance> page = dfUpCgJindoResistanceService.page(new Page<>(dfUpCgJindoResistanceDto.getPageIndex(), dfUpCgJindoResistanceDto.getPageSize()), dfUpCgJindoResistanceQueryWrapper);
+        return R.ok(page);
+    }
 
 }
